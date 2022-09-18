@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTMMAX", "UTMMAX\UTMMAX.csproj", "{B6BA8DE4-F88E-452F-A374-547C012BECA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastucture", "Infrastucture", "{4992644E-5E0E-43AE-864F-01EE94ADE79C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTMMAX.Core", "UTMMAX.Core\UTMMAX.Core.csproj", "{5E72E523-0CFB-489A-B2C8-86A08AFDF074}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6BA8DE4-F88E-452F-A374-547C012BECA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6BA8DE4-F88E-452F-A374-547C012BECA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6BA8DE4-F88E-452F-A374-547C012BECA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6BA8DE4-F88E-452F-A374-547C012BECA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E72E523-0CFB-489A-B2C8-86A08AFDF074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E72E523-0CFB-489A-B2C8-86A08AFDF074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E72E523-0CFB-489A-B2C8-86A08AFDF074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E72E523-0CFB-489A-B2C8-86A08AFDF074}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5E72E523-0CFB-489A-B2C8-86A08AFDF074} = {4992644E-5E0E-43AE-864F-01EE94ADE79C}
+	EndGlobalSection
+EndGlobal
