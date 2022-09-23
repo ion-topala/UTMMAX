@@ -9,7 +9,7 @@
       Sign In
     </button>
   </span>
-  <a mat-stroked-button [mat-menu-trigger-for]="accountMenu">
+  <a mat-stroked-button [mat-menu-trigger-for]="accountMenu" *ngIf="user">
     <img src="assets/images/user.png" width="35" height="35" alt="">
   </a>
 </mat-toolbar>

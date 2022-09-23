@@ -11,6 +11,9 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {SideNavComponent} from './components/presentational/side-nav/side-nav.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -18,6 +21,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MainContainerComponent,
     MainPageComponent,
     NavBarComponent,
+    SideNavComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,9 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatButtonModule,
     MatMenuModule,
     MatDividerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSidenavModule,
+    MatSelectModule
   ]
 })
 export class MainModule {

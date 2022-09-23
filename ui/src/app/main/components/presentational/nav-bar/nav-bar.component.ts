@@ -15,15 +15,15 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = {
-      id: 1,
-      firstName: "Topala",
-      lastName: "Ion",
-      email: "string",
-      phone: "string",
-      avatarKey: "string",
-      timeZone: "string",
-    };
+    // this.user = {
+    //   id: 1,
+    //   firstName: "Topala",
+    //   lastName: "Ion",
+    //   email: "string",
+    //   phone: "string",
+    //   avatarKey: "string",
+    //   timeZone: "string",
+    // };
   }
 
 }

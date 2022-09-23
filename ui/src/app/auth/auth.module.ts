@@ -7,6 +7,8 @@ import { LoginPageComponent } from './presentational/login-page/login-page.compo
 import {MatButtonModule} from "@angular/material/button";
 import { RegisterPageContainerComponent } from './components/containers/register-page-container/register-page-container.component';
 import { RegisterPageComponent } from './presentational/register-page/register-page.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -16,11 +18,13 @@ import { RegisterPageComponent } from './presentational/register-page/register-p
     RegisterPageContainerComponent,
     RegisterPageComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        MatButtonModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MatButtonModule,
+    MatSidenavModule,
+    MatSelectModule
+  ]
 })
 export class AuthModule {
 }
