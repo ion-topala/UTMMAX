@@ -6,6 +6,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastucture", "Infrastuct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTMMAX.Core", "UTMMAX.Core\UTMMAX.Core.csproj", "{5E72E523-0CFB-489A-B2C8-86A08AFDF074}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTMMAX.Migrations.Evolve", "UTMMAX.Migrations.Evolve\UTMMAX.Migrations.Evolve.csproj", "{9198A116-2AC3-4BFB-B480-4563A78231F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTMMAX.Repository", "UTMMAX.Repository\UTMMAX.Repository.csproj", "{A003BDE2-BD20-4ACF-9288-117E18BF1A5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,8 +24,17 @@ Global
 		{5E72E523-0CFB-489A-B2C8-86A08AFDF074}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E72E523-0CFB-489A-B2C8-86A08AFDF074}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E72E523-0CFB-489A-B2C8-86A08AFDF074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9198A116-2AC3-4BFB-B480-4563A78231F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9198A116-2AC3-4BFB-B480-4563A78231F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9198A116-2AC3-4BFB-B480-4563A78231F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9198A116-2AC3-4BFB-B480-4563A78231F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A003BDE2-BD20-4ACF-9288-117E18BF1A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A003BDE2-BD20-4ACF-9288-117E18BF1A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A003BDE2-BD20-4ACF-9288-117E18BF1A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A003BDE2-BD20-4ACF-9288-117E18BF1A5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5E72E523-0CFB-489A-B2C8-86A08AFDF074} = {4992644E-5E0E-43AE-864F-01EE94ADE79C}
+		{9198A116-2AC3-4BFB-B480-4563A78231F8} = {4992644E-5E0E-43AE-864F-01EE94ADE79C}
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Reflection;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -8,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using UTMMAX.Core.Extensions;
 using UTMMAX.Core.Json;
+using UTMMAX.Migrations.Evolve;
+using UTMMAX.Services;
 
 namespace UTMMAX;
 
@@ -22,9 +23,13 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        var globalAccessor = new GlobalAccessor(Configuration);
+        services.AddSingleton<IGlobalAccessor>(_ => globalAccessor);
+
         services.AddHttpContextAccessor();
         services.AddCors();
-        
+        services.AddMigrations();
+
         services.AddMvc(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -44,17 +49,17 @@ public class Startup
         AddHealthCheck(services);
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment,
-        IHostApplicationLifetime lifetime)
+    public void Configure(IApplicationBuilder      app, IWebHostEnvironment webHostEnvironment,
+                          IHostApplicationLifetime lifetime)
     {
         app.UseCors(x => x
             .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader());
-        
+
         app.UseHealthChecks("/_health", new HealthCheckOptions()
         {
-            Predicate = _ => true,
+            Predicate      = _ => true,
             ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
         });
         app.UseHealthChecksUI();
@@ -62,7 +67,7 @@ public class Startup
         app.UseAuthentication();
         app.UseAuthorization();
     }
-    
+
     private static void AddHealthCheck(IServiceCollection services)
     {
         services.AddHealthChecks()
@@ -72,7 +77,7 @@ public class Startup
                 {
                     ["version"] = typeof(Startup).Assembly.GetVersionDescription()
                 }));
-        
+
         /*
          * /healthchecks-ui
          */
@@ -81,7 +86,7 @@ public class Startup
                 opt.SetEvaluationTimeInSeconds(60); //time in seconds between check
                 opt.MaximumHistoryEntriesPerEndpoint(15); //maximum history of checks
                 opt.SetApiMaxActiveRequests(1); //api requests concurrency
-        
+
                 opt.ConfigureApiEndpointHttpclient((provider, client) =>
                 {
                     ServicePointManager.ServerCertificateValidationCallback +=
