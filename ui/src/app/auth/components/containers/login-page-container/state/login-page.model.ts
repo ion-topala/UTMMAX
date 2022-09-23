@@ -1,13 +1,13 @@
 import {ApiErrorModel} from "../../../../../../models/error.models";
 
-export interface LoginPage {
+export interface LoginPageState {
   loading: boolean;
   error: ApiErrorModel | null;
 }
 
-export function createInitialState(): LoginPage {
+export function createInitialState(): LoginPageState {
   return {
     loading: false,
     error: null,
-  } as LoginPage;
+  } as LoginPageState;
 }

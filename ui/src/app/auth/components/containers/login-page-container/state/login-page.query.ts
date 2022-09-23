@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
-import { LoginPageStore, LoginPageState } from './login-page.store';
+import { LoginPageStore } from './login-page.store';
+import {LoginPageState} from "./login-page.model";
 
 @Injectable()
 export class LoginPageQuery extends QueryEntity<LoginPageState> {

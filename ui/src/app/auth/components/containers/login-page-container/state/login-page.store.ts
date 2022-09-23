@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import {createInitialState, LoginPage} from './login-page.model';
-
-export interface LoginPageState extends EntityState<LoginPage> {}
+import { EntityStore, StoreConfig } from '@datorama/akita';
+import {createInitialState, LoginPageState} from './login-page.model';
 
 @Injectable()
 @StoreConfig({ name: 'login-page' })
 export class LoginPageStore extends EntityStore<LoginPageState> {
 
   constructor() {
-    super(createInitialState);
+    super(createInitialState());
   }
 
 }
