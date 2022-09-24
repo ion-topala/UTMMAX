@@ -11,7 +11,21 @@
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
       <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-      <PackageReference Include="Npgsql" Version="6.0.0" />
+      <PackageReference Include="Npgsql" Version="6.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="PostgresMigrations\V1_2022.09.24_15.42__add_sequence_to_primary_key_user_table.sql">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="PostgresMigrations\V1_2022.09.023_13.52__Create_user_table.sql" />
+      <Content Include="PostgresMigrations\V1_2022.09.023_13.52__Create_user_table.sql">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="PostgresMigrations\V1_2022.09.24_12.50__create_refresh_tokens_table.sql" />
+      <Content Include="PostgresMigrations\V1_2022.09.24_12.50__create_refresh_tokens_table.sql">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

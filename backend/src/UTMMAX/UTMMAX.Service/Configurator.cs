@@ -10,5 +10,6 @@ public static class Configurator
     {
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IServiceModelValidator, ServiceModelValidator>();
+        services.AddScoped<IPasswordService, PasswordService>();
     }
 }

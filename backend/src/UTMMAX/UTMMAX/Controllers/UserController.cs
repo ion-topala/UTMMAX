@@ -24,16 +24,16 @@ public class UserController : ApiBaseController
     {
         try
         {
-            await _userManager.RegisterUser(model);
-            throw new NotImplementedException();
+            var userModel = await _userManager.RegisterUser(model);
+
+            return Ok(userModel);
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
             throw;
         }
     }
-    
+
     [HttpGet("{id:int}")]
     [ApiAction("get_by_id")]
     public async Task<IActionResult> Login(int id)
@@ -48,5 +48,4 @@ public class UserController : ApiBaseController
             throw;
         }
     }
-    
 }

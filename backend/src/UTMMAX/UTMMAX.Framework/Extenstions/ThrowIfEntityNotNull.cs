@@ -6,7 +6,7 @@ namespace UTMMAX.Framework.Extenstions;
 
 public static class ThrowIfEntityNotNull
 {
-    public static Validatable<TValue> ThrowINotNull<TValue>(
+    public static Validatable<TValue> ThrowIfNotNull<TValue>(
         this TValue? value,
         Func<Exception> exceptionCustomizations = null,
         [CallerArgumentExpression("value")] string? paramName = null)
