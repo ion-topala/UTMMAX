@@ -11,15 +11,24 @@
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.4" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.Core" Version="6.0.4" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="6.0.4" />
+        <PackageReference Include="EFCore.NamingConventions" Version="6.0.0" />
+        <PackageReference Include="FluentValidation" Version="11.2.2" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.1.22426.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.3" />
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="6.0.0" />
         <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\UTMMAX.Authentication.Jwt\UTMMAX.Authentication.Jwt.csproj" />
       <ProjectReference Include="..\UTMMAX.Core\UTMMAX.Core.csproj" />
+      <ProjectReference Include="..\UTMMAX.Framework\UTMMAX.Framework.csproj" />
       <ProjectReference Include="..\UTMMAX.Migrations.Evolve\UTMMAX.Migrations.Evolve.csproj" />
+      <ProjectReference Include="..\UTMMAX.Mvc.Extensions\UTMMAX.Mvc.Extensions.csproj" />
+      <ProjectReference Include="..\UTMMAX.Repository\UTMMAX.Repository.csproj" />
+      <ProjectReference Include="..\UTMMAX.Service\UTMMAX.Service.csproj" />
     </ItemGroup>
 
 </Project>

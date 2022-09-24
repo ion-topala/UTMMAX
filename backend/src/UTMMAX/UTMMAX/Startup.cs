@@ -1,13 +1,18 @@
-﻿using System.Net;
-using HealthChecks.UI.Client;
+﻿using System.Reflection;
+using EntityFramework.Exceptions.PostgreSQL;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using UTMMAX.Core.Extensions;
+using Microsoft.EntityFrameworkCore;
+using UTMMAX.Authentication.Jwt;
 using UTMMAX.Core.Json;
+using UTMMAX.Domain.Configurations;
+using UTMMAX.Framework;
+using UTMMAX.Framework.Exceptions;
 using UTMMAX.Migrations.Evolve;
+using UTMMAX.Mvc.Extensions;
+using UTMMAX.Repository;
+using UTMMAX.Service;
 using UTMMAX.Services;
 
 namespace UTMMAX;
@@ -29,13 +34,28 @@ public class Startup
         services.AddHttpContextAccessor();
         services.AddCors();
         services.AddMigrations();
+        RegisterConfigurations(services);
+        
+        services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+        services.UseMvcExtensions(Assembly.GetExecutingAssembly());
+        services.AddManagers();
+        services.AddRepositories();
+        services.AddServices();
+        services.AddCors();
+        services.UseJwt();
+        services.AddDbContext<DataContext>(options =>
+            options
+                .UseExceptionProcessor()
+                .UseLazyLoadingProxies()
+                .UseSnakeCaseNamingConvention()
+                .UseNpgsql(globalAccessor.GetConnectionString()));
 
         services.AddMvc(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
                     .Build();
-                // options.Filters.Add<InternalServerErrorExceptionFilter>();
+                options.Filters.Add<InternalServerErrorExceptionFilter>();
                 options.Filters.Add(new AuthorizeFilter(policy));
             })
             .AddNewtonsoftJson(opts =>
@@ -46,55 +66,18 @@ public class Startup
             });
 
         AddInfrastructure(services);
-        AddHealthCheck(services);
     }
 
-    public void Configure(IApplicationBuilder      app, IWebHostEnvironment webHostEnvironment,
-                          IHostApplicationLifetime lifetime)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment,
+        IHostApplicationLifetime lifetime)
     {
         app.UseCors(x => x
             .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader());
 
-        app.UseHealthChecks("/_health", new HealthCheckOptions()
-        {
-            Predicate      = _ => true,
-            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-        });
-        app.UseHealthChecksUI();
-
         app.UseAuthentication();
         app.UseAuthorization();
-    }
-
-    private static void AddHealthCheck(IServiceCollection services)
-    {
-        services.AddHealthChecks()
-            .AddCheck("Application", () => new HealthCheckResult(HealthStatus.Healthy, "Application Build Version",
-                null,
-                new Dictionary<string, object>
-                {
-                    ["version"] = typeof(Startup).Assembly.GetVersionDescription()
-                }));
-
-        /*
-         * /healthchecks-ui
-         */
-        services.AddHealthChecksUI(opt =>
-            {
-                opt.SetEvaluationTimeInSeconds(60); //time in seconds between check
-                opt.MaximumHistoryEntriesPerEndpoint(15); //maximum history of checks
-                opt.SetApiMaxActiveRequests(1); //api requests concurrency
-
-                opt.ConfigureApiEndpointHttpclient((provider, client) =>
-                {
-                    ServicePointManager.ServerCertificateValidationCallback +=
-                        (sender, cert, chain, sslPolicyErrors) => true;
-                });
-                opt.AddHealthCheckEndpoint("UTMMAX", "/_health");
-            })
-            .AddInMemoryStorage();
     }
 
     private static void AddInfrastructure(IServiceCollection services)
@@ -105,5 +88,10 @@ public class Startup
             apiBehaviorOptions.SuppressModelStateInvalidFilter = true);
         services.AddOptions();
         services.AddEndpointsApiExplorer();
+    }
+
+    private static void RegisterConfigurations(IServiceCollection serviceCollection)
+    {
+        serviceCollection.AddSingleton(ConfigurationResolver.AuthenticationConfiguration);
     }
 }
