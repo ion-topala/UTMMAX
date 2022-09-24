@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Text;
 using EntityFramework.Exceptions.PostgreSQL;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,19 +31,17 @@ public class Startup
     {
         var globalAccessor = new GlobalAccessor(Configuration);
         services.AddSingleton<IGlobalAccessor>(_ => globalAccessor);
-
-        services.AddHttpContextAccessor();
-        services.AddCors();
-        services.AddMigrations();
-        RegisterConfigurations(services);
         
-        services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-        services.UseMvcExtensions(Assembly.GetExecutingAssembly());
-        services.AddManagers();
+        services.AddFramework();
         services.AddRepositories();
         services.AddServices();
-        services.AddCors();
-        services.UseJwt();
+        services.AddHttpContextAccessor();
+        services.AddMigrations();
+        
+        RegisterConfigurations(services);
+        AddInfrastructure(services);
+
+        services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
         services.AddDbContext<DataContext>(options =>
             options
                 .UseExceptionProcessor()
@@ -50,6 +49,10 @@ public class Startup
                 .UseSnakeCaseNamingConvention()
                 .UseNpgsql(globalAccessor.GetConnectionString()));
 
+        services.AddCors();
+        services.UseJwt();
+
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         services.AddMvc(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -64,8 +67,7 @@ public class Startup
                     DefaultSerializer.Options
                 );
             });
-
-        AddInfrastructure(services);
+        services.UseMvcExtensions(Assembly.GetExecutingAssembly());
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment,
