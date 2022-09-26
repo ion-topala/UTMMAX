@@ -1,0 +1,40 @@
+<mat-sidenav-container>
+  <mat-sidenav  #sidenav>
+    <mat-nav-list>
+      <a *ngFor="let route of routes"
+         mat-list-item
+         > {{route}}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 100vh;">
+      <mat-toolbar color="primary" style="position: sticky; top: 0">
+        <button mat-icon-button
+                aria-label="Menu"
+                (click)="sidenav.open()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar>
+      <div style="height: 1000px">
+        <h1>Text</h1>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<mat-menu
+  #accountMenu="matMenu"
+  [overlapTrigger]="false"
+  yPosition="below"
+  class="nav-account-details__menu"
+>
+  <button mat-menu-item routerLink="/settings/me">
+    <mat-icon matPrefix>account_circle</mat-icon>
+    My Profile
+  </button>
+  <button mat-menu-item routerLink="/auth/logout">
+    <mat-icon matPrefix>exit_to_app</mat-icon>
+    Sign Out
+  </button>
+</mat-menu>

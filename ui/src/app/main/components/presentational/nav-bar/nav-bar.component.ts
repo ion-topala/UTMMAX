@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UserModel} from "../../../../../models/user.models";
 
 @Component({
@@ -7,6 +7,9 @@ import {UserModel} from "../../../../../models/user.models";
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+
+  @Output()
+  public onToggleMenu = new EventEmitter<void>();
 
   @Input()
   public user: UserModel = null;
