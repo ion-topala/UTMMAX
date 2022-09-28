@@ -5,6 +5,12 @@ export const routes: Routes = [
   {
     path: '',
     component: MainContainerComponent,
-    children: []
+    children: [
+      {
+        path: 'auth',
+        loadChildren: () => import('src/app/auth/auth.module')
+          .then(m => m.AuthModule),
+      },
+    ]
   }
 ];
