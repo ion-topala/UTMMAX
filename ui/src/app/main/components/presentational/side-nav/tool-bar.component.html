@@ -1,9 +1,9 @@
 <mat-sidenav-container>
-  <mat-sidenav  #sidenav>
+  <mat-sidenav #sidenav>
     <mat-nav-list>
       <a *ngFor="let route of routes"
          mat-list-item
-         > {{route}}</a>
+      > {{route}}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -14,14 +14,28 @@
                 (click)="sidenav.open()">
           <mat-icon>menu</mat-icon>
         </button>
+        <span class="toolbar-title">
+          <a routerLink="/">
+            UTM MAX
+          </a>
+        </span>
+        <span class="example-spacer"></span>
+        <div *ngIf="!user">
+          <button mat-flat-button color="accent" routerLink="/auth/register">
+            Sign Up
+          </button>
+          <button mat-button routerLink="/auth/login">
+            Sign In
+          </button>
+        </div>
+        <a mat-stroked-button [mat-menu-trigger-for]="accountMenu" *ngIf="user">
+          <img src="assets/images/user.png" width="35" height="35" alt="">
+        </a>
       </mat-toolbar>
-      <div style="height: 1000px">
-        <h1>Text</h1>
-      </div>
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
 
 <mat-menu
   #accountMenu="matMenu"
