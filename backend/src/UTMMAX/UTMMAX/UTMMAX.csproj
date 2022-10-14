@@ -24,6 +24,7 @@
       <ProjectReference Include="..\UTMMAX.Authentication.Jwt\UTMMAX.Authentication.Jwt.csproj" />
       <ProjectReference Include="..\UTMMAX.Core\UTMMAX.Core.csproj" />
       <ProjectReference Include="..\UTMMAX.Framework\UTMMAX.Framework.csproj" />
+      <ProjectReference Include="..\UTMMAX.Kinopoisk\UTMMAX.Kinopoisk.csproj" />
       <ProjectReference Include="..\UTMMAX.Migrations.Evolve\UTMMAX.Migrations.Evolve.csproj" />
       <ProjectReference Include="..\UTMMAX.Mvc.Extensions\UTMMAX.Mvc.Extensions.csproj" />
       <ProjectReference Include="..\UTMMAX.Repository\UTMMAX.Repository.csproj" />
