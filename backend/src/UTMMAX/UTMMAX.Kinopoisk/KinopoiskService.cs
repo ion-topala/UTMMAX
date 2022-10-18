@@ -1,4 +1,7 @@
-﻿namespace UTMMAX.Kinopoisk;
+﻿using Newtonsoft.Json;
+using UTMMAX.Kinopoisk.Models;
+
+namespace UTMMAX.Kinopoisk;
 
 public class KinopoiskService : IKinopoiskService
 {
@@ -11,7 +14,7 @@ public class KinopoiskService : IKinopoiskService
         this._httpClient = httpClient;
     }
 
-    public async Task SearchAsync(string searchTerm)
+    public async Task<QueryResponseModel> SearchAsync(string searchTerm)
     {
         string query;
         using var content = new FormUrlEncodedContent(new KeyValuePair<string, string>[]
@@ -24,8 +27,13 @@ public class KinopoiskService : IKinopoiskService
         query = content.ReadAsStringAsync().Result;
 
         var response = await _httpClient
-            .GetAsync($"{_kinopoiskConfig.ApiUrl}{ApiUrlConstants.MovieUrl}{query}");
+            .GetAsync($"{_kinopoiskConfig.ApiUrl}{ApiUrlConstants.MovieUrl}?{query}");
         response.EnsureSuccessStatusCode();
+
         var responseBody = await response.Content.ReadAsStringAsync();
+        var result       = JsonConvert.DeserializeObject<QueryResponseModel>(responseBody);
+        result.Docs = result.Docs.Where(model => model.Rating.Imdb > 0.0).ToArray();
+
+        return result;
     }
 }

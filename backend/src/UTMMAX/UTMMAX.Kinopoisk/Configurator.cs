@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using UTMMAX.Service;
 
 namespace UTMMAX.Kinopoisk;
 

@@ -2,9 +2,9 @@
 
 public class Rating : BaseMovieModel
 {
-    public int Kp                 { get; set; }
-    public int Imdb               { get; set; }
-    public int FilmCritics        { get; set; }
-    public int RussianFilmCritics { get; set; }
-    public int Await              { get; set; }
+    public double Kp                 { get; set; }
+    public double Imdb               { get; set; }
+    public double FilmCritics        { get; set; }
+    public double RussianFilmCritics { get; set; }
+    public double Await              { get; set; }
 }
