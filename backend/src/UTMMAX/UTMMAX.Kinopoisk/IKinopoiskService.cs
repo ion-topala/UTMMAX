@@ -4,5 +4,6 @@ namespace UTMMAX.Kinopoisk;
 
 public interface IKinopoiskService
 {
-    Task<QueryResponseModel> SearchAsync(string searchTerm);
+    Task<QueryResponseModel> SearchAsync(FilterModel  filter);
+    Task<QueryResponseModel> GetTopByType(FilterModel filter);
 }

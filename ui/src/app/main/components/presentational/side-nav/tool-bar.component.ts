@@ -8,7 +8,7 @@ import {UserModel} from "../../../../../models/user.models";
   styleUrls: ['./tool-bar.component.scss']
 })
 export class ToolBarComponent implements OnInit {
-  routes = ['Categories', 'Movies', 'TvSerials' ];
+  routes = ['Movies', 'Tv-Series', 'Cartoons', 'Anime', 'Animated Series', 'Tv-Shows' ];
 
   @Input()
   public user: UserModel = null;

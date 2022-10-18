@@ -15,8 +15,16 @@ public class MovieManager
 
     public async Task<MovieModel[]> Search(SearchMovieModel model)
     {
-        var responseModel = await _kinopoiskService.SearchAsync(model.SearchTerm);
-        responseModel.Docs = responseModel.Docs.OrderByDescending(movieModel => movieModel.Rating.Imdb).ToArray();
+        var filter = new FilterModel
+        {
+            SearchTerm = model.SearchTerm,
+            Limit      = model.Limit
+        };
+
+        var responseModel = await _kinopoiskService.SearchAsync(filter);
+        responseModel.Docs = responseModel.Docs.OrderByDescending(movieModel => movieModel.Rating.Imdb)
+                                          .Take(filter.Limit)
+                                          .ToArray();
 
         return responseModel.Docs;
     }

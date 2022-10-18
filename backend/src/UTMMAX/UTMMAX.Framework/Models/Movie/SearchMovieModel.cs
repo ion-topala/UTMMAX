@@ -3,4 +3,5 @@
 public class SearchMovieModel
 {
     public string SearchTerm { get; set; }
+    public int    Limit      { get; set; }
 }
