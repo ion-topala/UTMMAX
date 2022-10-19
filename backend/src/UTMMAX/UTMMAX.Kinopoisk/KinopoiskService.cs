@@ -31,7 +31,7 @@ public class KinopoiskService : IKinopoiskService
 
         return result;
     }
-    
+
     public async Task<QueryResponseModel> GetTopByType(FilterModel filter)
     {
         using var content = new FormUrlEncodedContent(new KeyValuePair<string, string>[]
@@ -41,15 +41,17 @@ public class KinopoiskService : IKinopoiskService
             new("search", "7-10"),
             new("field", "year"),
             new("search", "2018-2022"),
-            new("field", "typeNumber"),            
+            new("field", "typeNumber"),
+            new("search", filter.Type.ToString("D")),
             new("sortField", "year"),
             new("sortType", "1"),
             new("sortField", "votes.imdb"),
-            new("sortType", "-1")
+            new("sortType", "-1"),
+            new("limit", filter.Limit.ToString()),
         });
         var query  = content.ReadAsStringAsync().Result;
         var result = await CallApi(query);
-        
+
         return result;
     }
 

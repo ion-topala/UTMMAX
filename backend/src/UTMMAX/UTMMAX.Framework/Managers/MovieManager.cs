@@ -28,4 +28,16 @@ public class MovieManager
 
         return responseModel.Docs;
     }
+
+    public async Task<MovieModel[]> GetAll(MovieFilterModel filterModel)
+    {
+        var filter = new FilterModel
+        {
+            Limit = filterModel.Limit,
+            Type  = filterModel.Type
+        };
+        var responseModel = await _kinopoiskService.GetTopByType(filter);
+
+        return responseModel.Docs;
+    }
 }
