@@ -20,11 +20,13 @@
 
 .card {
   height: 300px;
-  background-color: #e0e1e2;
+  //background-color: #e0e1e2;
+  background-image: url("https://st.kp.yandex.net/images/film_iphone/iphone360_1044279.jpg");
   border-radius: 5px;
   display: inline-block;
   margin-right: 10px;
   position: relative;
+  background-size: contain;
 }
 
 .no-right-margin {

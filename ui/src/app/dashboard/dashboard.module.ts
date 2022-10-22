@@ -14,6 +14,9 @@ import {routes} from "./routes";
     DashboardPageComponent,
     SliderCardsComponent
   ],
+  exports:[
+    DashboardContainerComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
