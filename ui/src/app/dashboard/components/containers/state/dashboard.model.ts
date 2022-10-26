@@ -13,7 +13,7 @@ export function createDashboard(): DashboardState {
     loading: false,
     error: null,
     filter: {
-      limit: 15,
+      limit: 14,
       type: MovieType.Movie
     },
     movies: []

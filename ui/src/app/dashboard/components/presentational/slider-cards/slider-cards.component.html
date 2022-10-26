@@ -3,8 +3,9 @@
        [ngClass]="{'disabled':currentPage === 1}"></div>
   <div class="cards" [ngClass]="{'w-100': totalPages === 1}">
     <div class="overflow" [ngStyle]="{'width': overflowWidth, 'left': pagePosition}">
-      <div class="card" *ngFor="let i of arr; let index = index" [ngStyle]="{'width': cardWidth}">
-        <span>{{i}}</span>
+      <div class="card" *ngFor="let movie of movies; let index = index"
+           [ngStyle]="{'background-image': 'url(' + movie.posterPreviewUrl + ')',
+           'width': cardWidth}">
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
+import {MovieResultModel} from "../../../../models/movie-models";
 
 @Component({
   selector: 'app-slider-cards',
@@ -6,6 +7,10 @@ import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/c
   styleUrls: ['./slider-cards.component.scss']
 })
 export class SliderCardsComponent implements OnInit {
+
+  @Input()
+  public movies:MovieResultModel[]
+
   public arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   public totalCards: number = this.arr.length;
   public currentPage: number = 1;
