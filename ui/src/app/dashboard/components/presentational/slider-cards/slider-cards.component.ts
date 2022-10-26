@@ -10,7 +10,6 @@ export class SliderCardsComponent implements OnInit {
 
   @Input()
   public movies:MovieResultModel[]
-
   public arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   public totalCards: number = this.arr.length;
   public currentPage: number = 1;
