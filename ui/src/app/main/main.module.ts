@@ -13,7 +13,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSelectModule} from "@angular/material/select";
 import {MatListModule} from "@angular/material/list";
-import {ToolBarComponent} from "./components/presentational/side-nav/tool-bar.component";
+import {ToolBarComponent} from "./components/presentational/tool-bar/tool-bar.component";
 
 
 @NgModule({

@@ -1,11 +1,12 @@
-﻿namespace UTMMAX.Kinopoisk.Enums;
+﻿using System.ComponentModel;
+
+namespace UTMMAX.Kinopoisk.Enums;
 
 public enum MovieType
 {
-    Movie          = 1,
-    TvSeries       = 2,
-    Cartoons       = 3,
-    Anime          = 4,
-    AnimatedSeries = 5,
-    TvShow         = 6  
+    [Description("movie")]           Movie          = 1,
+    [Description("tv-series")]       TvSeries       = 2,
+    [Description("cartoon")]         Cartoons       = 3,
+    [Description("anime")]           Anime          = 4,
+    [Description("animated-series")] AnimatedSeries = 5,
 }

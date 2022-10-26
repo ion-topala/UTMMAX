@@ -1,4 +1,5 @@
-﻿using UTMMAX.Framework.Models.Movie;
+﻿using UTMMAX.Framework.Mappers.MovieMappers;
+using UTMMAX.Framework.Models.Movie;
 using UTMMAX.Kinopoisk;
 using UTMMAX.Kinopoisk.Models;
 
@@ -7,10 +8,12 @@ namespace UTMMAX.Framework.Managers;
 public class MovieManager
 {
     private readonly IKinopoiskService _kinopoiskService;
+    private readonly IMovieMapper      _movieMapper;
 
-    public MovieManager(IKinopoiskService kinopoiskService)
+    public MovieManager(IKinopoiskService kinopoiskService, IMovieMapper movieMapper)
     {
         _kinopoiskService = kinopoiskService;
+        _movieMapper      = movieMapper;
     }
 
     public async Task<MovieModel[]> Search(SearchMovieModel model)
@@ -29,7 +32,7 @@ public class MovieManager
         return responseModel.Docs;
     }
 
-    public async Task<MovieModel[]> GetAll(MovieFilterModel filterModel)
+    public async Task<MovieResultModel[]> GetAll(MovieFilterModel filterModel)
     {
         var filter = new FilterModel
         {
@@ -38,6 +41,6 @@ public class MovieManager
         };
         var responseModel = await _kinopoiskService.GetTopByType(filter);
 
-        return responseModel.Docs;
+        return responseModel.Docs.Select(_movieMapper.Map).ToArray();
     }
 }
