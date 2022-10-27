@@ -1,1 +1,23 @@
-<p>login-page works!</p>
+<p>register-page works!</p>
+
+<form [formGroup]="profileForm">
+  <div class="container">
+
+    <label for="email">Email: </label><br>
+    <input id="email" type="text" formControlName="email">
+    <br>
+    <label for="password">Password: </label><br>
+    <input id="password" type="password" formControlName="password">
+    <br>
+
+    <button type="button" class="registerbtn">Register</button>
+  </div>
+  <div class="container signin">
+    <p>Don't have an account? <a routerLink="/auth/register">Register</a>.</p>
+  </div>
+</form>
+<br>
+<!--<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">-->
+<!--  <p>Complete the form to enable button.</p>-->
+<!--  <button type="submit" [disabled]="!profileForm.valid">Submit</button>-->
+<!--</form>-->

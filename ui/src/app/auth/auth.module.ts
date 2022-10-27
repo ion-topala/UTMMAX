@@ -9,6 +9,11 @@ import { RegisterPageContainerComponent } from './components/containers/register
 import { RegisterPageComponent } from './presentational/register-page/register-page.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSelectModule} from "@angular/material/select";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 
 @NgModule({
@@ -23,7 +28,12 @@ import {MatSelectModule} from "@angular/material/select";
     RouterModule.forChild(routes),
     MatButtonModule,
     MatSidenavModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class AuthModule {
