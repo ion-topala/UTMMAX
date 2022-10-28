@@ -6,6 +6,7 @@ export interface DashboardState {
   error: ApiErrorModel | null;
   filter: MovieFilterModel;
   movies: MovieResultModel[];
+  cartoons: MovieResultModel[];
 }
 
 export function createDashboard(): DashboardState {
@@ -16,6 +17,7 @@ export function createDashboard(): DashboardState {
       limit: 14,
       type: MovieType.Movie
     },
-    movies: []
+    movies: [],
+    cartoons: [],
   } as DashboardState;
 }

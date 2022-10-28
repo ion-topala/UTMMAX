@@ -15,4 +15,8 @@ export class DashboardQuery extends QueryEntity<DashboardState> {
   public selectMovies(): Observable<MovieResultModel[]> {
     return this.select(store => store.movies)
   }
+
+  public selectCartoons(): Observable<MovieResultModel[]> {
+    return this.select(store => store.cartoons)
+  }
 }

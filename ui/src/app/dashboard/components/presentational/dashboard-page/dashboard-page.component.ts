@@ -11,6 +11,9 @@ export class DashboardPageComponent implements OnInit {
   @Input()
   public movies:MovieResultModel[]
 
+  @Input()
+  public cartoons:MovieResultModel[]
+
   constructor() { }
 
   ngOnInit() {
