@@ -1,35 +1,55 @@
 <div class="full-container">
 <form [formGroup]="profileForm">
 <div class="container">
-  <label for="first-name">First Name: </label><br>
-  <input id="first-name" type="text" formControlName="firstName">
-  <br>
-  <label for="last-name">Last Name: </label><br>
-  <input id="last-name" type="text" formControlName="lastName">
+  <div class="name-input">
+    <div class="first-name">
+      <input id="first-name" type="text" formControlName="firstName" placeholder="First name">
+    </div>
+    <div class="last-name">
+      <input id="last-name" type="text" formControlName="lastName" placeholder="Last name">
+    </div> </div>
+  <input id="email" type="text" formControlName="email"placeholder="E-mail" placeholder="Enter your E-mail">
 <br>
-  <label for="email">Email: </label><br>
-  <input id="email" type="text" formControlName="email">
-<br>
-  <label for="password">Password: </label><br>
-  <input id="password" type="password" formControlName="password">
-<br>
+  <div class="password-input">
+    <div class="pass-input">
+      <div class="pass">
+        <input id="pass" type="password" formControlName="password" placeholder="Pick a password">
+      </div>
+      <div class="pass-repeat">
+        <input id="pass-repeat" type="password" formControlName="password-repeat" placeholder="Repeat your password">
+      </div> </div>
+    <div class="pass-repeat">
+  </div>
+    </div>
+  <div class="gender-select">
+    <div class="gender-male">
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male">Male</label>
+    </div>
+
+    <div>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female">Female</label>
+    </div>
+    <div>
+      <input type="radio" id="secret" name="gender" value="secret">
+      <label for="secret">Secret</label>
+    </div></div><br>
+
+  <div class="date-selector">
   <mat-form-field appearance="fill">
-    <mat-label>Choose a date</mat-label>
+    <mat-label>Choose your birthday</mat-label>
     <input matInput [matDatepicker]="picker">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
-
+</div><br>
+  <div class="btnregister">
   <button type="button" class="registerbtn" (click)="createProfile()">Register</button>
-</div>
+  </div></div>
   <div class="container signin">
     <p>Already have an account? <a routerLink="/auth/login">Sign in</a>.</p>
   </div>
 </form>
 </div>
-<br>
-<!--<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">-->
-<!--  <p>Complete the form to enable button.</p>-->
-<!--  <button type="submit" [disabled]="!profileForm.valid">Submit</button>-->
-<!--</form>-->

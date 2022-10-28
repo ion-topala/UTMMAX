@@ -1,23 +1,18 @@
-<p>register-page works!</p>
-
-<form [formGroup]="profileForm">
-  <div class="container">
-
-    <label for="email">Email: </label><br>
-    <input id="email" type="text" formControlName="email">
-    <br>
-    <label for="password">Password: </label><br>
-    <input id="password" type="password" formControlName="password">
-    <br>
-
-    <button type="button" class="registerbtn">Register</button>
-  </div>
-  <div class="container signin">
-    <p>Don't have an account? <a routerLink="/auth/register">Register</a>.</p>
-  </div>
-</form>
-<br>
-<!--<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">-->
-<!--  <p>Complete the form to enable button.</p>-->
-<!--  <button type="submit" [disabled]="!profileForm.valid">Submit</button>-->
-<!--</form>-->
+<div class="full-container">
+  <form [formGroup]="profileForm">
+    <div class="container">
+      <input id="email" type="text" formControlName="email"placeholder="E-mail" placeholder="Enter your E-mail">
+      <br>
+      <div class="password-input">
+        <div class="pass">
+            <input id="pass" type="password" formControlName="password-repeat" placeholder="Repeat your password">
+        </div>
+      </div>
+      <div class="btnlogin">
+        <button type="button" class="loginbtn" >Log-In</button>
+      </div></div>
+    <div class="container signin">
+      <p>New on site? <a routerLink="/auth/register">Register</a>.</p>
+    </div>
+  </form>
+</div>
