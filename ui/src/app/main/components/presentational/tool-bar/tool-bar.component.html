@@ -1,4 +1,4 @@
-<mat-sidenav-container style="z-index: 10000;">
+<mat-sidenav-container>
   <mat-sidenav #sidenav>
     <mat-nav-list>
       <a *ngFor="let route of routes"
@@ -7,6 +7,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
+    <div style="height: 100vh;">
     <mat-toolbar color="primary">
       <button mat-icon-button
               aria-label="Menu"
@@ -32,6 +33,7 @@
       </a>
     </mat-toolbar>
     <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
