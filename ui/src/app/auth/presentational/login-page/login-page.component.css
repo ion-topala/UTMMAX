@@ -4,7 +4,6 @@
 .full-container{
   display: flex;
   justify-content: center;
-
 }
 .container {
   padding: 16px;
@@ -80,5 +79,5 @@ a {
   text-align: center;
   width: 355px;
   border-radius: 999px;
-  margin: 8px;
+  margin: 18px;
 }
