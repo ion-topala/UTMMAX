@@ -1,5 +1,7 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {ApiErrorModel} from "../../../../models/error.models";
+import {FormControl, FormGroup} from "@angular/forms";
+
 
 @Component({
   selector: 'app-login-page',
@@ -7,6 +9,11 @@ import {ApiErrorModel} from "../../../../models/error.models";
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnChanges {
+  name = new FormControl('');
+  profileForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  })
 
   @Input()
   public loading: boolean = false;

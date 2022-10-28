@@ -1,1 +1,18 @@
-<p>login-page works!</p>
+<div class="full-container">
+  <form [formGroup]="profileForm">
+    <div class="container">
+      <input id="email" type="text" formControlName="email"placeholder="E-mail" placeholder="Enter your E-mail">
+      <br>
+      <div class="password-input">
+        <div class="pass">
+            <input id="pass" type="password" formControlName="password-repeat" placeholder="Repeat your password">
+        </div>
+      </div>
+      <div class="btnlogin">
+        <button type="button" class="loginbtn" >Log-In</button>
+      </div></div>
+    <div class="container signin">
+      <p>New on site? <a routerLink="/auth/register">Register</a>.</p>
+    </div>
+  </form>
+</div>

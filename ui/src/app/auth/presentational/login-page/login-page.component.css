@@ -1,0 +1,83 @@
+* {box-sizing:content-box;}
+
+
+.full-container{
+  display: flex;
+  justify-content: center;
+}
+.container {
+  padding: 16px;
+}
+.pass-input{
+  display: flex;
+  justify-content: space-between;
+}
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border-radius: 999px;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #df40fa;
+  opacity: 60%;
+  color: white;
+  border-radius: 999px;
+  outline: none;
+  transition: width 2s, height 2s, background-color 1s, transform 1s;
+}
+
+input[type=text]:focus :not(placeholder), input[type=password]:focus :not(placeholder){
+  opacity: 60%;
+
+}
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+.btnlogin{
+  display: flex;
+  justify-content: center;
+  width: auto;
+  padding-left: 25px;
+}
+.loginbtn {
+  background: #4a148b;
+  border-radius: 999px;
+  box-shadow: #5E5DF0 0 10px 20px -10px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 30px;
+  border: 0;
+}
+
+.loginbtn:hover {
+  background-color: #df40fa;
+  transition: width 2s, height 2s, background-color 1s, transform 1s;
+}
+
+a:link{
+  text-decoration: none;
+}
+
+a {
+  color: #de40f9;
+}
+
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+  width: 355px;
+  border-radius: 999px;
+  margin: 18px;
+}
