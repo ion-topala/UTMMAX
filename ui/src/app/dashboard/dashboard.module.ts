@@ -5,6 +5,7 @@ import { DashboardPageComponent } from './components/presentational/dashboard-pa
 import {SliderCardsComponent} from "./components/presentational/slider-cards/slider-cards.component";
 import {RouterModule} from "@angular/router";
 import {routes} from "./routes";
+import {IvyCarouselModule} from "angular-responsive-carousel";
 
 
 
@@ -20,6 +21,7 @@ import {routes} from "./routes";
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    IvyCarouselModule,
   ]
 })
 export class DashboardModule { }
