@@ -20,4 +20,16 @@ export class DashboardService {
         })
       );
   }
+
+  public getCartoons() {
+    let filter = {...this.store.getValue().filter};
+    filter.type = MovieType.Cartoons;
+
+    this.moviesService.getTopMovies(filter)
+      .subscribe((it) =>
+        this.store.update({
+          cartoons: it,
+        })
+      );
+  }
 }
