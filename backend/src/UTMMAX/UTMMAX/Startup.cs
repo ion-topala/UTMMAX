@@ -10,6 +10,7 @@ using UTMMAX.Core.Json;
 using UTMMAX.Domain.Configurations;
 using UTMMAX.Framework;
 using UTMMAX.Framework.Exceptions;
+using UTMMAX.Kinopoisk;
 using UTMMAX.Migrations.Evolve;
 using UTMMAX.Mvc.Extensions;
 using UTMMAX.Repository;
@@ -37,6 +38,8 @@ public class Startup
         services.AddServices();
         services.AddHttpContextAccessor();
         services.AddMigrations();
+
+        services.AddKinopoiskService(Configuration.GetSection("Kinopoisk").Get<KinopoiskConfig>());
         
         RegisterConfigurations(services);
         AddInfrastructure(services);

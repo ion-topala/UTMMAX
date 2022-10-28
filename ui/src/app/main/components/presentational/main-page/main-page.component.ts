@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {UserModel} from "../../../../../models/user.models";
 
 @Component({
   selector: 'app-main-page',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  public user: UserModel | null;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

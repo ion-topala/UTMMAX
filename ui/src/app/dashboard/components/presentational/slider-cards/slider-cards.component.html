@@ -1,0 +1,5 @@
+<carousel [autoplay]="true" [autoplayInterval]="5000" [height]="400" [loop]="true">
+  <div class="carousel-cell" *ngFor="let movie of movies;">
+    <img src="{{movie.posterPreviewUrl}}" alt="">
+  </div>
+</carousel>

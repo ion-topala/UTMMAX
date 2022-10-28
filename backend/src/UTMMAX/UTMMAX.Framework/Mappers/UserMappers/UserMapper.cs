@@ -22,7 +22,8 @@ public class UserMapper : IUserMapper
             Id        = entity.Id,
             FirstName = entity.FirstName,
             LastName  = entity.LastName,
-            FullName  = entity.FullName
+            FullName  = entity.FullName,
+            Email     = entity.Email
         };
     }
 }
