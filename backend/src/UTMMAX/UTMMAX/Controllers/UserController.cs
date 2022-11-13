@@ -20,6 +20,8 @@ public class UserController : ApiBaseController
     [AllowAnonymous]
     [HttpPost("register")]
     [ApiAction("register")]
+    [ProducesResponseType(200, Type = typeof(UserModel))]
+    [ProducesResponseType(400, Type = typeof(ApiErrorModel))]
     public async Task<IActionResult> Register([FromBody] RegisterUserModel model)
     {
         try
@@ -34,13 +36,17 @@ public class UserController : ApiBaseController
         }
     }
 
-    [HttpGet("{id:int}")]
-    [ApiAction("get_by_id")]
-    public async Task<IActionResult> Login(int id)
+    [AllowAnonymous]
+    [HttpPost("login")]
+    [ApiAction("login")]
+    [ProducesResponseType(200, Type = typeof(LoginResultModel))]
+    [ProducesResponseType(400, Type = typeof(ApiErrorModel))]
+    public async Task<IActionResult> Login([FromBody] LoginModel model)
     {
         try
         {
-            return Ok();
+            var resultModel = await _userManager.Login(model);
+            return Ok(resultModel);
         }
         catch (Exception e)
         {

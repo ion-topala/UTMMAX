@@ -1,7 +1,7 @@
 <div class="full-container">
-  <form [formGroup]="profileForm">
+  <form [formGroup]="form">
     <div class="container">
-      <input id="email" type="text" formControlName="email"placeholder="E-mail" placeholder="Enter your E-mail">
+      <input matInput id="email" type="text" formControlName="email" placeholder="Email">
       <br>
       <div class="password-input">
         <div class="pass">
@@ -9,10 +9,11 @@
         </div>
       </div>
       <div class="btnlogin">
-        <button type="button" class="loginbtn" >Log-In</button>
+        <button (click)="submit()" type="button" class="loginbtn">Sign In</button>
       </div></div>
     <div class="container signin">
       <p>New on site? <a routerLink="/auth/register">Register</a>.</p>
     </div>
   </form>
 </div>
+

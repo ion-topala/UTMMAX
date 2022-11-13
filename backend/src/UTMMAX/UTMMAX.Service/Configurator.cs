@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using UTMMAX.Service.Authentication;
 using UTMMAX.Service.RepositoriesServices;
 using UTMMAX.Service.Validation;
 
@@ -11,5 +12,7 @@ public static class Configurator
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IServiceModelValidator, ServiceModelValidator>();
         services.AddScoped<IPasswordService, PasswordService>();
+        services.AddScoped<ITokenBuilderService, TokenBuilderService>();
+        services.AddScoped<IRefreshTokenService, RefreshTokenService>();
     }
 }

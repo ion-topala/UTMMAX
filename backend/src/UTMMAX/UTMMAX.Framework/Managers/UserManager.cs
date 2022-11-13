@@ -1,9 +1,13 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Security.Claims;
+using Microsoft.Extensions.Logging;
+using UTMMAX.Domain.Entities;
+using UTMMAX.Domain.Entities.User;
 using UTMMAX.Framework.Exceptions.UserExceptions;
 using UTMMAX.Framework.Extenstions;
 using UTMMAX.Framework.Mappers.UserMappers;
 using UTMMAX.Framework.Models.User;
 using UTMMAX.Service;
+using UTMMAX.Service.Authentication;
 using UTMMAX.Service.RepositoriesServices;
 
 namespace UTMMAX.Framework.Managers;
@@ -15,21 +19,35 @@ public class UserManager
     private readonly ILogger<UserManager>   _logger;
     private readonly IUserMapper            _userMapper;
     private readonly IPasswordService       _passwordService;
+    private readonly ITokenGenerator        _tokenGenerator;
+    private readonly ITokenBuilderService   _tokenBuilderService;
+    private readonly IRefreshTokenService   _refreshTokenService;
 
-    public UserManager(IServiceModelValidator validator, IUserService userService, ILogger<UserManager> logger, IUserMapper userMapper, IPasswordService passwordService)
+    public UserManager(
+        IServiceModelValidator validator,
+        IUserService           userService,
+        ILogger<UserManager>   logger,
+        IUserMapper            userMapper,
+        IPasswordService       passwordService,
+        ITokenGenerator        tokenGenerator,
+        ITokenBuilderService   tokenBuilderService,
+        IRefreshTokenService   refreshTokenService)
     {
-        _validator       = validator;
-        _userService     = userService;
-        _logger          = logger;
-        _userMapper      = userMapper;
-        _passwordService = passwordService;
+        _validator           = validator;
+        _userService         = userService;
+        _logger              = logger;
+        _userMapper          = userMapper;
+        _passwordService     = passwordService;
+        _tokenGenerator      = tokenGenerator;
+        _tokenBuilderService = tokenBuilderService;
+        _refreshTokenService = refreshTokenService;
     }
 
     public async Task<UserModel> RegisterUser(RegisterUserModel model)
     {
         try
         {
-            await _validator.ValidateAndThrowAsync(model);
+            // await _validator.ValidateAndThrowAsync(model);
 
             var userEntity = await _userService.GetUserByEmail(model.Email);
             userEntity.ThrowIfNotNull(() => new UserAlreadyExistsException());
@@ -45,5 +63,45 @@ public class UserManager
             _logger.LogInformation("Failed to register user");
             throw;
         }
+    }
+
+    public async Task<LoginResultModel> Login(LoginModel loginModel)
+    {
+        await _validator.ValidateAndThrowAsync(loginModel);
+        var user = await _userService.GetUserByEmail(loginModel.Email);
+
+        if (user == null || !_passwordService.IsPasswordEqual(loginModel.Password, user.PasswordHash))
+        {
+            throw new IncorrectEmailOrPasswordException();
+        }
+
+        var token        = _tokenGenerator.GenerateToken(GetUserClaims(user));
+        var refreshToken = _tokenBuilderService.GenerateRefreshToken();
+
+        await _refreshTokenService.InsertRefreshToken(new RefreshTokenEntity
+        {
+            RefreshToken = refreshToken.Token,
+            UserId       = user.Id,
+            ExpiresTime  = refreshToken.Expires
+        });
+
+        return new LoginResultModel
+        {
+            AccessToken                = token.Token,
+            ExpiresIn                  = token.ExpiresIn,
+            TokenType                  = token.TokenType,
+            RefreshToken               = refreshToken.Token,
+            RefreshTokenExpirationTime = refreshToken.Expires
+        };
+    }
+
+    private static ICollection<Claim> GetUserClaims(UserEntity userEntity)
+    {
+        return new Claim[]
+        {
+            new(ClaimType.Email, userEntity.Email),
+            new(ClaimType.UserId, userEntity.Id.ToString(), ClaimValueTypes.Integer),
+            new(ClaimType.FullName, $"{userEntity.FirstName} {userEntity.LastName}"),
+        };
     }
 }

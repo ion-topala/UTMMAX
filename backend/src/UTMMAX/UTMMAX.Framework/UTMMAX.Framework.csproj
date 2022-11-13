@@ -27,6 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\UTMMAX.Core\UTMMAX.Core.csproj" />
       <ProjectReference Include="..\UTMMAX.Kinopoisk\UTMMAX.Kinopoisk.csproj" />
       <ProjectReference Include="..\UTMMAX.Mvc.Extensions\UTMMAX.Mvc.Extensions.csproj" />
       <ProjectReference Include="..\UTMMAX.Service\UTMMAX.Service.csproj" />

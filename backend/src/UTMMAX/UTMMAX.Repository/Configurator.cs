@@ -9,6 +9,7 @@ public static class Configurator
     public static void AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
         services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         AddServices(services);
     }
