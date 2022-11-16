@@ -1,20 +1,21 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using UTMMAX.Framework.Exceptions;
 using UTMMAX.Framework.Managers;
 using UTMMAX.Framework.Models.User;
 using UTMMAX.Mvc.Extensions.Errors;
 
 namespace UTMMAX.Controllers;
 
-[ApiArea("identity")]
-[Route("api/identity")]
-public class UserController : ApiBaseController
+[ApiArea("auth")]
+[Route("api/authentication")]
+public class AuthenticationController : ApiBaseController
 {
-    private readonly UserManager _userManager;
+    private readonly AuthenticationManager _authenticationManager;
 
-    public UserController(UserManager userManager)
+    public AuthenticationController(AuthenticationManager authenticationManager)
     {
-        _userManager = userManager;
+        _authenticationManager = authenticationManager;
     }
 
     [AllowAnonymous]
@@ -26,7 +27,7 @@ public class UserController : ApiBaseController
     {
         try
         {
-            var userModel = await _userManager.RegisterUser(model);
+            var userModel = await _authenticationManager.RegisterUser(model);
 
             return Ok(userModel);
         }
@@ -45,13 +46,32 @@ public class UserController : ApiBaseController
     {
         try
         {
-            var resultModel = await _userManager.Login(model);
+            var resultModel = await _authenticationManager.Login(model);
             return Ok(resultModel);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
+        }
+    }
+    
+    [AllowAnonymous]
+    [HttpPost("login-by-refresh-token")]
+    [ApiAction("login-by-refresh-token")]
+    public async Task<IActionResult> LoginByRefreshToken([FromBody] LoginByRefreshTokenModel model)
+    {
+        try
+        {
+            var result = await _authenticationManager.LoginByRefreshToken(model.RefreshToken);
+
+            return Ok(result);
+        }
+        catch (InvalidRefreshTokenException)
+        {
+            var error = CreateError(ApiErrorCodes.Authentication.InvalidRefreshToken)
+                .Build();
+            return BadRequest(error);
         }
     }
 }

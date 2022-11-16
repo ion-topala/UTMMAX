@@ -1,7 +1,8 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {ApiErrorModel} from "../../../../models/error.models";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ApiErrorModel} from "../../../models/error.models";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Constants} from 'src/app/constants';
+import {LoginModel} from "../../../models/user.models";
 
 
 @Component({
@@ -9,14 +10,19 @@ import {Constants} from 'src/app/constants';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent implements OnChanges {
-  public form: FormGroup;
+export class LoginPageComponent {
 
   @Input()
   public loading: boolean = false;
 
   @Input()
   public error: ApiErrorModel | null = null;
+
+  @Output()
+  public onLogin = new EventEmitter<LoginModel>();
+
+  public form: FormGroup;
+
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group(
@@ -27,10 +33,7 @@ export class LoginPageComponent implements OnChanges {
     );
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-  }
-
-  submit() {
-    console.log(this.form.value)
+  public submit(): void {
+    this.onLogin.emit(this.form.value);
   }
 }

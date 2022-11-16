@@ -1,4 +1,4 @@
-import {ApiErrorModel} from "../../../../../models/error.models";
+import {ApiErrorModel} from "../../../../models/error.models";
 import {MovieFilterModel, MovieResultModel, MovieType} from "../../../../models/movie-models";
 
 export interface DashboardState {

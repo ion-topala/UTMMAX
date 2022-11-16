@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ApiErrorModel} from "../../../../models/error.models";
+import {ApiErrorModel} from "../../../models/error.models";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({

@@ -14,5 +14,6 @@ public static class Configurator
         services.AddScoped<IPasswordService, PasswordService>();
         services.AddScoped<ITokenBuilderService, TokenBuilderService>();
         services.AddScoped<IRefreshTokenService, RefreshTokenService>();
+        services.AddScoped<IAuthenticationAccessor, HttpAuthenticationAccessor>();
     }
 }

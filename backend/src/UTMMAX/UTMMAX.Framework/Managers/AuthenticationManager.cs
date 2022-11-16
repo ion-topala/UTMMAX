@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using UTMMAX.Domain.Entities;
 using UTMMAX.Domain.Entities.User;
+using UTMMAX.Domain.Extensions;
+using UTMMAX.Framework.Exceptions;
 using UTMMAX.Framework.Exceptions.UserExceptions;
 using UTMMAX.Framework.Extenstions;
 using UTMMAX.Framework.Mappers.UserMappers;
@@ -12,21 +14,21 @@ using UTMMAX.Service.RepositoriesServices;
 
 namespace UTMMAX.Framework.Managers;
 
-public class UserManager
+public class AuthenticationManager
 {
     private readonly IServiceModelValidator _validator;
     private readonly IUserService           _userService;
-    private readonly ILogger<UserManager>   _logger;
+    private readonly ILogger<AuthenticationManager>   _logger;
     private readonly IUserMapper            _userMapper;
     private readonly IPasswordService       _passwordService;
     private readonly ITokenGenerator        _tokenGenerator;
     private readonly ITokenBuilderService   _tokenBuilderService;
     private readonly IRefreshTokenService   _refreshTokenService;
 
-    public UserManager(
+    public AuthenticationManager(
         IServiceModelValidator validator,
         IUserService           userService,
-        ILogger<UserManager>   logger,
+        ILogger<AuthenticationManager>   logger,
         IUserMapper            userMapper,
         IPasswordService       passwordService,
         ITokenGenerator        tokenGenerator,
@@ -93,6 +95,46 @@ public class UserManager
             RefreshToken               = refreshToken.Token,
             RefreshTokenExpirationTime = refreshToken.Expires
         };
+    }
+
+    public async Task<LoginResultModel> LoginByRefreshToken(string token)
+    {
+        var user         = await GetUserByRefreshToken(token);
+        var accessToken  = _tokenGenerator.GenerateToken(GetUserClaims(user));
+        var refreshToken = _tokenBuilderService.GenerateRefreshToken();
+
+        if (refreshToken == null)
+        {
+            throw new InvalidRefreshTokenException();
+        }
+
+        await _refreshTokenService.InsertRefreshToken(new RefreshTokenEntity
+        {
+            RefreshToken = refreshToken.Token,
+            UserId       = user.Id,
+            ExpiresTime  = refreshToken.Expires
+        });
+
+        return new LoginResultModel
+        {
+            AccessToken                = accessToken.Token,
+            ExpiresIn                  = accessToken.ExpiresIn,
+            TokenType                  = accessToken.TokenType,
+            RefreshToken               = refreshToken.Token,
+            RefreshTokenExpirationTime = refreshToken.Expires
+        };
+    }
+
+    private async Task<UserEntity> GetUserByRefreshToken(string token)
+    {
+        var entity = await _refreshTokenService.GetByToken(token);
+
+        if (entity == null || entity.IsExpired())
+        {
+            throw new InvalidRefreshTokenException();
+        }
+
+        return entity.UserEntity ?? throw new InvalidRefreshTokenException();
     }
 
     private static ICollection<Claim> GetUserClaims(UserEntity userEntity)

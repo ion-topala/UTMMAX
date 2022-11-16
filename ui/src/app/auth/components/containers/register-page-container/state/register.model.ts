@@ -1,4 +1,4 @@
-import {ApiErrorModel} from "../../../../../../models/error.models";
+import {ApiErrorModel} from "../../../../../models/error.models";
 
 export interface RegisterState {
   loading: boolean;

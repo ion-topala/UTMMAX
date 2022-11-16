@@ -3,7 +3,7 @@ import {RegisterStore} from "./state/register.store";
 import {RegisterQuery} from "./state/register.query";
 import {RegisterService} from "./state/register.service";
 import {Observable} from "rxjs";
-import {ApiErrorModel} from "../../../../../models/error.models";
+import {ApiErrorModel} from "../../../../models/error.models";
 
 @Component({
   template: `
