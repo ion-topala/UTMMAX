@@ -6,6 +6,8 @@ import {ApiErrorModel} from "../../../../models/error.models";
 import {Observable} from "rxjs";
 import {LoginModel} from "../../../../models/user.models";
 import {Router} from "@angular/router";
+import {StorageService} from "../../../../shared/storage.service";
+import {AppStateService} from "../../../../main/app-state/app-state.service";
 
 @Component({
   template: `
@@ -25,11 +27,21 @@ export class LoginPageContainerComponent {
     private query: LoginPageQuery,
     private service: LoginPageService,
     private router: Router,
+    private appService: AppStateService,
+    private storageService: StorageService,
   ) {
+  }
+
+  public ngOnInit(): void {
+    this.appService.reset();
+    this.storageService.clear();
   }
 
   public login(event: LoginModel): void {
     this.service.login(event)
-      .subscribe(_ => this.router.navigateByUrl('/'));
+      .subscribe(_ => {
+        this.router.navigateByUrl('/')
+        this.appService.init();
+      });
   }
 }

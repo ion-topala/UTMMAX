@@ -3,6 +3,8 @@ import {AppStateQuery} from "../../../app-state/app-state.query";
 import {UserModel} from "../../../../models/user.models";
 import {filter, Observable, take, takeUntil} from "rxjs";
 import {BaseComponent} from "../../../../ui-core/base.component";
+import {AppStateService} from "../../../app-state/app-state.service";
+import {AppStateStore} from "../../../app-state/app-state.store";
 
 @Component({
   template: `
@@ -13,8 +15,10 @@ import {BaseComponent} from "../../../../ui-core/base.component";
 export class MainContainerComponent extends BaseComponent implements OnInit {
 
   public user$: Observable<UserModel | null> = this.query.selectUser();
+
   constructor(
     private query: AppStateQuery,
+    private appStateStore: AppStateStore
   ) {
     super();
   }
@@ -27,8 +31,8 @@ export class MainContainerComponent extends BaseComponent implements OnInit {
         take(1),
       )
       .subscribe(_ => {
-        const user = this.query.getUser();
-      });
+          const user = this.query.getUser();
+        }
+      )
   }
-
 }

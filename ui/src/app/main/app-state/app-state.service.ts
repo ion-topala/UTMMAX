@@ -10,15 +10,20 @@ export class AppStateService {
 
   public reset(): void {
     this.store.reset();
+
+    this.init();
   }
 
   public init(): void {
     this.store.reset();
-    this.identityService.getUser().subscribe((it) =>
-      this.store.update({
-        user: it,
-        sessionReady: true,
-      })
+    this.identityService.getUser().subscribe({
+        next: (it) =>
+          this.store.update({
+            user: it,
+            sessionReady: true,
+          }),
+        error: () => this.store.update({user: null})
+      }
     );
   }
 }
