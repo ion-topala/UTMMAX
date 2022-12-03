@@ -11,7 +11,9 @@ public class UserMapper : IUserMapper
         {
             FirstName = model.FirstName,
             LastName  = model.LastName,
-            Email     = model.Email
+            Email     = model.Email,
+            Birthday  = model.Birthday.ToUniversalTime(),
+            Gender    = model.Gender
         };
     }
 
@@ -23,7 +25,9 @@ public class UserMapper : IUserMapper
             FirstName = entity.FirstName,
             LastName  = entity.LastName,
             FullName  = entity.FullName,
-            Email     = entity.Email
+            Email     = entity.Email,
+            Gender    = entity.Gender,
+            Birthday  = entity.Birthday
         };
     }
 }

@@ -3,7 +3,7 @@ import {DashboardStore} from "./state/dashboard.store";
 import {DashboardQuery} from "./state/dashboard.query";
 import {DashboardService} from "./state/dashboard.service";
 import {Observable} from "rxjs";
-import {ApiErrorModel} from "../../../../models/error.models";
+import {ApiErrorModel} from "../../../models/error.models";
 import {MovieResultModel} from "../../../models/movie-models";
 
 @Component({

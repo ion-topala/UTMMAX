@@ -3,6 +3,7 @@ import {LoginPageContainerComponent} from "./components/containers/login-page-co
 import {
   RegisterPageContainerComponent
 } from "./components/containers/register-page-container/register-page-container.component";
+import {LogoutContainerComponent} from "./components/containers/logout-container/logout-container.component";
 
 export const routes: Routes = [
   {
@@ -12,6 +13,10 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterPageContainerComponent
+  },
+  {
+    path: 'logout',
+    component: LogoutContainerComponent
   },
   {
     path: '',

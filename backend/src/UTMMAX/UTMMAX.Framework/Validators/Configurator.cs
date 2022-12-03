@@ -9,5 +9,6 @@ public static class Configurator
     public static void AddValidators(this IServiceCollection services)
     {
         services.AddValidator<RegisterUserModelValidator, RegisterUserModel>();
+        services.AddValidator<LoginModelValidator, LoginModel>();
     }
 }

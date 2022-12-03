@@ -1,0 +1,49 @@
+@import "src/stylesheets/index";
+
+.acc-suggestion {
+  @include rounded;
+  font-family: $defaultFont;
+  color: #FFFFFF;
+
+  &--text {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  &.acc-suggestion {
+    &-suggestion {
+      background: $warnYellow;
+      color: #000000;
+    }
+
+    &-critical {
+      background: $warn;
+    }
+
+    &-calm {
+      background: $blue;
+      color: $white
+    }
+
+    &-safe {
+      border: 1px solid $primary;
+      border-radius: 5px;
+    }
+
+    &-tip {
+      background: #ededed;
+      color: gray;
+      border-radius: 5px;
+    }
+
+    &-warn {
+      ::ng-deep .mat-icon {
+        color: rgb(255, 153, 31);
+      }
+
+      background-color: rgb(255, 250, 230);
+      color: inherit;
+      border-radius: 5px;
+    }
+  }
+}

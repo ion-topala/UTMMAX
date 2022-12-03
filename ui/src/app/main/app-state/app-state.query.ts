@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
 import { AppStateStore } from './app-state.store';
 import {Observable} from "rxjs";
-import {UserModel} from "../../../models/user.models";
 import {AppState} from "./app-state.model";
+import {UserModel} from "../../models/user.models";
 
 @Injectable()
 export class AppStateQuery extends QueryEntity<AppState> {

@@ -1,71 +1,41 @@
-* {box-sizing:content-box;}
+* {
+  box-sizing: content-box;
+}
 
-
-.full-container{
+.full-container {
   display: flex;
   justify-content: center;
 
 }
-.container {
-  padding: 16px;
+
+.register-field {
+  width: 100%;
+  padding-bottom: 5px;
 }
-.name-input{
+
+.container {
+  margin-top: 40px;
+}
+
+.name-container {
   display: flex;
   justify-content: space-between;
 }
-.last-name{
+
+.last-name, .first-name {
   width: 45%;
 }
-.first-name{
-  width: 45%;
-}
-input.placeholder{
+
+input.placeholder {
   text-align: center;
 }
-#email, #pass-repeat,#pass,#last-name,#first-name{
-  text-align: center
-}
-.pass-input{
-  display: flex;
-  justify-content: space-between;
-}
-.pass{
-  width: 45%;
-}
-.pass-repeat{
-  width: 45%;
-}
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border-radius: 999px;
-  border: none;
-  background: #f1f1f1;
+
+.mat-radio-button {
+  padding-right: 10px;
 }
 
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #df40fa;
-  opacity: 60%;
-  color: white;
-  border-radius: 999px;
-  outline: none;
-  transition: width 2s, height 2s, background-color 1s, transform 1s;
-}
-
-input[type=text]:focus :not(placeholder), input[type=password]:focus :not(placeholder){
-  opacity: 60%;
-
-}
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-.date-selector{
-  display: flex;
-  justify-content: center;
-  padding-left: 35px;
+.date-selector {
+  margin-top: 20px;
 }
 
 .gender-select input[type="radio"] {
@@ -73,6 +43,7 @@ hr {
   position: fixed;
   width: 0;
 }
+
 .gender-select label {
   display: inline-block;
   padding: 5px 20px;
@@ -80,29 +51,34 @@ hr {
   font-size: 16px;
   border-radius: 999px;
 }
+
 .gender-select label:hover {
   background-color: #df40fa;
   color: #ffffff;
   cursor: pointer;
   transition: width 2s, height 2s, background-color 1s, transform 1s;
 }
+
 .gender-male label:hover {
   background-color: #4a148b;
   color: #ffffff;
   cursor: pointer;
   transition: width 2s, height 2s, background-color 1s, transform 1s;
 }
+
 .gender-select input[type="radio"]:checked + label {
   background-color: #de40f9;
   border-color: #ffffff;
   color: #ffffff;
 }
+
 .gender-male input[type="radio"]:checked + label {
   background-color: #4a148b;
   border-color: #ffffff;
   color: #ffffff;
 }
-.gender-select{
+
+.gender-select {
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -112,19 +88,21 @@ hr {
   width: 90%;
   border-radius: 999px;
 }
-.btnregister{
+
+.submit-container {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   width: auto;
-  padding-left: 25px;
 }
+
 .registerbtn {
   background: #4a148b;
   border-radius: 999px;
   box-shadow: #5E5DF0 0 10px 20px -10px;
   color: #ffffff;
   cursor: pointer;
-  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
@@ -132,25 +110,27 @@ hr {
   outline: 0 solid transparent;
   padding: 8px 30px;
   border: 0;
-  }
+}
 
 .registerbtn:hover {
   background-color: #df40fa;
   transition: width 2s, height 2s, background-color 1s, transform 1s;
 }
 
-a:link{
+a:link {
   text-decoration: none;
 }
 
 a {
   color: #de40f9;
 }
-a:hover{
+
+a:hover {
   cursor: pointer;
 }
 
 .signin {
+  height: 50px;
   background-color: #f1f1f1;
   text-align: center;
   width: 95%;

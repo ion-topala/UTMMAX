@@ -14,11 +14,17 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatIconModule} from "@angular/material/icon";
+import {LogoutContainerComponent} from "./components/containers/logout-container/logout-container.component";
+import {UiCoreModule} from "../ui-core/ui-core.module";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
   declarations: [
     LoginPageContainerComponent,
+    LogoutContainerComponent,
     LoginPageComponent,
     RegisterPageContainerComponent,
     RegisterPageComponent
@@ -33,7 +39,11 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule,
+    UiCoreModule,
+    MatRadioModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AuthModule {

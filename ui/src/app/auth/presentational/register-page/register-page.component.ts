@@ -1,38 +1,50 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ApiErrorModel} from "../../../../models/error.models";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ApiErrorModel} from "../../../models/error.models";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Constants} from "../../../constants";
+import {Gender, RegisterUserModel} from "../../../models/user.models";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css']
+  styleUrls: ['./register-page.component.scss']
 })
-export class RegisterPageComponent implements OnInit {
+export class RegisterPageComponent {
   profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    passwordRepeat: new FormControl(''),
-    age: new FormControl(''),
-    gender: new FormControl(''),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.pattern(Constants.Regex.Email)]),
+    password: new FormControl('', [Validators.required]),
+    birthday: new FormControl('', [Validators.required]),
+    gender: new FormControl('', [Validators.required]),
   })
-  private heroForm: FormGroup<{ name: FormControl<any>; power: FormControl<any>; alterEgo: FormControl<any> }>;
-  createProfile() {
-    this.profileForm.patchValue({
-    });
-  }
-  onSubmit() {
-    console.warn(this.profileForm.value);
-  }
+
+  genders = Gender;
+  hide = true;
+
   @Input()
   public loading: boolean = false;
 
   @Input()
   public error: ApiErrorModel | null;
 
-  constructor() { }
+  @Output()
+  public onSubmit = new EventEmitter<RegisterUserModel>();
 
-  ngOnInit(): void {
+  createProfile() {
+    let date = this.profileForm.get('birthday').value;
+    const formatedDate = formatDate(date, 'yyyy-MM-dd', 'en');
+
+    const model = {
+      firstName: this.profileForm.get('firstName').value,
+      lastName: this.profileForm.get('lastName').value,
+      email: this.profileForm.get('email').value,
+      password: this.profileForm.get('password').value,
+      birthday: formatedDate,
+      gender: this.profileForm.get('gender').value as unknown as Gender,
+    } as RegisterUserModel;
+
+    this.onSubmit.emit(model)
   }
 }

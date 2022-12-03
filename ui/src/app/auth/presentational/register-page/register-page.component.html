@@ -1,55 +1,98 @@
 <div class="full-container">
-<form [formGroup]="profileForm">
-<div class="container">
-  <div class="name-input">
-    <div class="first-name">
-      <input id="first-name" type="text" formControlName="firstName" placeholder="First name" required>
-    </div>
-    <div class="last-name">
-      <input id="last-name" type="text" formControlName="lastName" placeholder="Last name">
-    </div> </div>
-  <input id="email" type="text" formControlName="email"placeholder="E-mail" placeholder="Enter your E-mail">
-<br>
-  <div class="password-input">
-    <div class="pass-input">
-      <div class="pass">
-        <input id="pass" type="password" formControlName="password" placeholder="Pick a password">
+  <form [formGroup]="profileForm">
+    <div class="container">
+      <div class="name-container">
+        <div class="first-name">
+          <mat-form-field class="register-field" hideRequiredMarker>
+            <input
+              placeholder="First Name"
+              formControlName="firstName"
+              type="text"
+              matInput
+              required
+            />
+            <mat-error *ngIf="profileForm.get('firstName')?.hasError('required')"
+            >Please enter your first name
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="last-name">
+          <mat-form-field class="register-field" hideRequiredMarker>
+            <input
+              placeholder="Last Name"
+              formControlName="lastName"
+              type="text"
+              matInput
+              required
+            />
+            <mat-error *ngIf="profileForm.get('lastName')?.hasError('required')"
+            >Please enter your last name
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
-      <div class="pass-repeat">
-        <input id="pass-repeat" type="password" formControlName="passwordRepeat" placeholder="Repeat your password">
-      </div> </div>
-    <div class="pass-repeat">
-  </div>
-    </div>
-  <div class="gender-select">
-    <div class="gender-male">
-      <input type="radio" id="male" name="gender" value="male">
-      <label for="male">Male</label>
-    </div>
 
-    <div>
-      <input type="radio" id="female" name="gender" value="female">
-      <label for="female">Female</label>
-    </div>
-    <div>
-      <input type="radio" id="secret" name="gender" value="secret">
-      <label for="secret">Secret</label>
-    </div></div><br>
+      <mat-form-field class="register-field" hideRequiredMarker>
+        <input
+          placeholder="Email Address"
+          formControlName="email"
+          type="text"
+          matInput
+          required
+        />
+        <mat-error *ngIf="profileForm.get('email')?.hasError('required')"
+        >Please enter a email
+        </mat-error>
+        <mat-error *ngIf="profileForm.get('email')?.hasError('pattern')"
+        >Please enter a valid email
+        </mat-error>
+      </mat-form-field>
 
-  <div class="date-selector">
-  <mat-form-field appearance="fill">
-    <mat-label>Choose your birthday</mat-label>
-    <input matInput [matDatepicker]="picker">
-    <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-</div><br>
-  <div class="btnregister">
-  <button type="button" class="registerbtn" (click)="createProfile()">Register</button>
-  </div></div>
-  <div class="container signin">
-    <p>Already have an account? <a routerLink="/auth/login">Sign in</a>.</p>
-  </div>
-</form>
+      <mat-form-field class="register-field" hideRequiredMarker>
+        <input
+          matInput
+          placeholder="Password"
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+          required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="profileForm.get('email')?.hasError('required')"
+        >Please enter a password
+        </mat-error>
+      </mat-form-field>
+
+      <mat-radio-group aria-label="Select an option" formControlName="gender">
+        <mat-radio-button value="{{genders.Male}}">Male</mat-radio-button>
+        <mat-radio-button value="{{genders.Female}}">Female</mat-radio-button>
+        <mat-radio-button value="{{genders.None}}">None</mat-radio-button>
+      </mat-radio-group>
+
+      <div class="date-selector">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose your birthday</mat-label>
+          <input matInput formControlName="birthday" [matDatepicker]="picker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <app-suggestion *ngIf="error" type="critical">
+        <mat-icon class="mr-2">error_outline</mat-icon>
+        {{ error.message }}
+      </app-suggestion>
+      <div class="submit-container">
+        <button mat-flat-button
+                color="primary"
+                type="button"
+                [disabled]="profileForm.invalid || loading"
+                (click)="createProfile()">
+          Register
+          <mat-icon *ngIf="loading">
+            <mat-spinner diameter="20">
+            </mat-spinner>
+          </mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
 </div>

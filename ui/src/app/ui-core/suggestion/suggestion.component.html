@@ -1,0 +1,12 @@
+<div class="w-full flex items-center acc-suggestion acc-suggestion-{{type}} p-2 {{classNames}}">
+  <div class="flex w-full md:flex-1 lg:flex-1 items-center bold acc-suggestion--text">
+    <ng-content select="mat-icon"></ng-content>
+    <span class="p-2">
+      <ng-content></ng-content>
+    </span>
+  </div>
+
+  <div class="flex flex-wrap items-center">
+    <ng-content select=[actions]></ng-content>
+  </div>
+</div>
