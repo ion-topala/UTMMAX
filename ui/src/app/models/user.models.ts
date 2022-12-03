@@ -29,7 +29,7 @@ export interface UserModel {
   password: string;
   birthday: Date | string;
   gender: Gender;
-  profileImage: string;
+  profilePicture: string;
 }
 
 export interface LoginModel {
