@@ -32,9 +32,9 @@ public class AuthenticationController : ApiBaseController
 
             return Ok(userModel);
         }
-        catch (Exception e)
+        catch (UserAlreadyExistsException)
         {
-            throw;
+            return BadRequest(ApiErrorCodes.Register.UserAlreadyExists, ApiErrorMessage.UserAlreadyExists);
         }
     }
 

@@ -3,7 +3,13 @@ import {Observable, tap} from 'rxjs';
 import {ApiService} from "./shared/api.service";
 import {StorageService} from "./shared/storage.service";
 import * as moment from 'moment';
-import {LoginByRefreshTokenModel, LoginModel, LoginResultModel} from "./models/user.models";
+import {
+  LoginByRefreshTokenModel,
+  LoginModel,
+  LoginResultModel,
+  RegisterUserModel,
+  UserModel
+} from "./models/user.models";
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +26,10 @@ export class AuthService {
         this.setSession(it);
       })
     );
+  }
+
+  public register(data: RegisterUserModel): Observable<UserModel> {
+    return this.apiService.post<UserModel>(`${this.apiUrl}/register`, data);
   }
 
   public loginByRefreshToken(data: LoginByRefreshTokenModel): Observable<LoginResultModel> {

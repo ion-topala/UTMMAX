@@ -12,7 +12,7 @@ public class UserMapper : IUserMapper
             FirstName = model.FirstName,
             LastName  = model.LastName,
             Email     = model.Email,
-            Birthday  = model.Birthday,
+            Birthday  = model.Birthday.ToUniversalTime(),
             Gender    = model.Gender
         };
     }

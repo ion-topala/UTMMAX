@@ -16,24 +16,24 @@ namespace UTMMAX.Framework.Managers;
 
 public class AuthenticationManager
 {
-    private readonly IServiceModelValidator _validator;
-    private readonly IUserService           _userService;
-    private readonly ILogger<AuthenticationManager>   _logger;
-    private readonly IUserMapper            _userMapper;
-    private readonly IPasswordService       _passwordService;
-    private readonly ITokenGenerator        _tokenGenerator;
-    private readonly ITokenBuilderService   _tokenBuilderService;
-    private readonly IRefreshTokenService   _refreshTokenService;
+    private readonly IServiceModelValidator         _validator;
+    private readonly IUserService                   _userService;
+    private readonly ILogger<AuthenticationManager> _logger;
+    private readonly IUserMapper                    _userMapper;
+    private readonly IPasswordService               _passwordService;
+    private readonly ITokenGenerator                _tokenGenerator;
+    private readonly ITokenBuilderService           _tokenBuilderService;
+    private readonly IRefreshTokenService           _refreshTokenService;
 
     public AuthenticationManager(
-        IServiceModelValidator validator,
-        IUserService           userService,
-        ILogger<AuthenticationManager>   logger,
-        IUserMapper            userMapper,
-        IPasswordService       passwordService,
-        ITokenGenerator        tokenGenerator,
-        ITokenBuilderService   tokenBuilderService,
-        IRefreshTokenService   refreshTokenService)
+        IServiceModelValidator         validator,
+        IUserService                   userService,
+        ILogger<AuthenticationManager> logger,
+        IUserMapper                    userMapper,
+        IPasswordService               passwordService,
+        ITokenGenerator                tokenGenerator,
+        ITokenBuilderService           tokenBuilderService,
+        IRefreshTokenService           refreshTokenService)
     {
         _validator           = validator;
         _userService         = userService;
@@ -51,6 +51,7 @@ public class AuthenticationManager
         {
             // await _validator.ValidateAndThrowAsync(model);
 
+            model.Email = model.Email.ToLower().Trim();
             var userEntity = await _userService.GetUserByEmail(model.Email);
             userEntity.ThrowIfNotNull(() => new UserAlreadyExistsException());
 

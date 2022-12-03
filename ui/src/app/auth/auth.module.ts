@@ -17,6 +17,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {LogoutContainerComponent} from "./components/containers/logout-container/logout-container.component";
 import {UiCoreModule} from "../ui-core/ui-core.module";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -27,20 +29,22 @@ import {UiCoreModule} from "../ui-core/ui-core.module";
     RegisterPageContainerComponent,
     RegisterPageComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        MatButtonModule,
-        MatSidenavModule,
-        MatSelectModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        UiCoreModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MatButtonModule,
+    MatSidenavModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    UiCoreModule,
+    MatRadioModule,
+    MatProgressSpinnerModule
+  ]
 })
 export class AuthModule {
 }
