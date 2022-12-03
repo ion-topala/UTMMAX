@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using UTMMAX.Authentication.Jwt;
 using UTMMAX.Core.Json;
 using UTMMAX.Domain.Configurations;
+using UTMMAX.Files;
 using UTMMAX.Framework;
 using UTMMAX.Framework.Exceptions;
 using UTMMAX.Kinopoisk;
@@ -38,6 +39,7 @@ public class Startup
         services.AddServices();
         services.AddHttpContextAccessor();
         services.AddMigrations();
+        services.AddFileService();
 
         services.AddKinopoiskService(Configuration.GetSection("Kinopoisk").Get<KinopoiskConfig>());
         

@@ -38,7 +38,7 @@ public class KinopoiskService : IKinopoiskService
         {
             new("token", _kinopoiskConfig.ApiToken),
             new("field", "rating.kp"),
-            new("search", "7-10"),
+            new("search", "8-10"),
             new("field", "year"),
             new("search", "2018-2022"),
             new("field", "typeNumber"),

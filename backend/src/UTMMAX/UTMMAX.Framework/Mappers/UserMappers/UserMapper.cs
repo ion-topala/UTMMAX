@@ -21,13 +21,14 @@ public class UserMapper : IUserMapper
     {
         return new UserModel
         {
-            Id        = entity.Id,
-            FirstName = entity.FirstName,
-            LastName  = entity.LastName,
-            FullName  = entity.FullName,
-            Email     = entity.Email,
-            Gender    = entity.Gender,
-            Birthday  = entity.Birthday
+            Id             = entity.Id,
+            FirstName      = entity.FirstName,
+            LastName       = entity.LastName,
+            FullName       = entity.FullName,
+            Email          = entity.Email,
+            Gender         = entity.Gender,
+            Birthday       = entity.Birthday,
+            ProfilePicture = entity.ProfilePicture,
         };
     }
 }
