@@ -5,12 +5,17 @@
       <br>
       <div class="password-input">
         <div class="pass">
-            <input id="pass" type="password" formControlName="password" placeholder="Repeat your password">
+          <input id="pass" type="password" formControlName="password" placeholder="Repeat your password">
         </div>
       </div>
       <div class="btnlogin">
         <button (click)="submit()" type="button" class="loginbtn">Sign In</button>
-      </div></div>
+      </div>
+    </div>
+    <app-suggestion *ngIf="error" type="critical">
+      <mat-icon class="mr-2">error_outline</mat-icon>
+      {{ error.message }}
+    </app-suggestion>
     <div class="container signin">
       <p>New on site? <a routerLink="/auth/register">Register</a>.</p>
     </div>

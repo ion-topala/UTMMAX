@@ -9,6 +9,6 @@ public class UserModel
     public string   LastName  { get; set; }
     public string   FullName  { get; set; }
     public string   Email     { get; set; }
-    public DateOnly Birthday  { get; set; }
+    public DateTime Birthday  { get; set; }
     public Gender   Gender    { get; set; }
 }

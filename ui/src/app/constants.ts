@@ -1,12 +1,5 @@
 export const Constants = {
-  Images: {
-    SignInWallpaper:
-      "assets/acc-home-page-background.png",
-    LogoImg:
-      "assets/caring-closet.png",
-    StartProcess:
-      "assets/activity-group.png"
-  },
+  Images: {},
   Regex: {
     OnlyLetters: "([A-Za-ÿ][-,a-z. ']+[ ]*)+",
     Password: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&_])[A-Za-z\\d@$!%*?&_]{8,}$',

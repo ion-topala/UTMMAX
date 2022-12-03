@@ -13,7 +13,7 @@ public class UserMapper : IUserMapper
             LastName  = model.LastName,
             Email     = model.Email,
             Birthday  = model.Birthday,
-            Gender    = model.Gender   
+            Gender    = model.Gender
         };
     }
 

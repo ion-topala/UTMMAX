@@ -16,6 +16,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {LogoutContainerComponent} from "./components/containers/logout-container/logout-container.component";
+import {UiCoreModule} from "../ui-core/ui-core.module";
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {LogoutContainerComponent} from "./components/containers/logout-container
         MatNativeDateModule,
         MatFormFieldModule,
         MatInputModule,
-        MatIconModule
+        MatIconModule,
+        UiCoreModule
     ]
 })
 export class AuthModule {

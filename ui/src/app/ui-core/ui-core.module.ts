@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {BaseComponent} from "./base.component";
+import { SuggestionComponent } from './suggestion/suggestion.component';
 
 
 
 @NgModule({
   declarations: [
-    BaseComponent
+    BaseComponent,
+    SuggestionComponent
   ],
-  exports: [
-    BaseComponent
-  ],
+    exports: [
+        BaseComponent,
+        SuggestionComponent
+    ],
   imports: [
     CommonModule
   ]
