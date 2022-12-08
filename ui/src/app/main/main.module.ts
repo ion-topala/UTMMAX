@@ -14,6 +14,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSelectModule} from "@angular/material/select";
 import {MatListModule} from "@angular/material/list";
 import {ToolBarComponent} from "./components/presentational/tool-bar/tool-bar.component";
+import {UiCoreModule} from "../ui-core/ui-core.module";
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {ToolBarComponent} from "./components/presentational/tool-bar/tool-bar.co
     MatSidenavModule,
     MatSelectModule,
     MatListModule,
+    UiCoreModule,
   ]
 })
 export class MainModule {
