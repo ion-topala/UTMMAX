@@ -5,9 +5,10 @@ namespace UTMMAX.Files
 {
     public class FileService : IFileService
     {
-        public byte[] GetImage(string path)
+        public string GetImage(string path)
         {
-            return File.ReadAllBytes(path);
+            var imageArray = File.ReadAllBytes(path);
+            return "data:image/jpg;base64," + Convert.ToBase64String(imageArray);
         }
 
         public string GenerateProfileIcon()

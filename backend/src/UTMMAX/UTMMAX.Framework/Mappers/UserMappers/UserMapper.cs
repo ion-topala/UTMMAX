@@ -1,10 +1,18 @@
 ﻿using UTMMAX.Domain.Entities.User;
 using UTMMAX.Framework.Models.User;
+using UTMMAX.Service;
 
 namespace UTMMAX.Framework.Mappers.UserMappers;
 
 public class UserMapper : IUserMapper
 {
+    private readonly IFileService _fileService;
+
+    public UserMapper(IFileService fileService)
+    {
+        _fileService = fileService;
+    }
+
     public UserEntity ToEntity(RegisterUserModel model)
     {
         return new UserEntity
@@ -19,6 +27,13 @@ public class UserMapper : IUserMapper
 
     public UserModel ToModel(UserEntity entity)
     {
+        string image = null;
+        
+        if (entity.ProfilePicture != null)
+        {
+            image = "data:image/jpg;base64," + _fileService.GetImage(entity.ProfilePicture);
+        }
+
         return new UserModel
         {
             Id             = entity.Id,
@@ -28,7 +43,7 @@ public class UserMapper : IUserMapper
             Email          = entity.Email,
             Gender         = entity.Gender,
             Birthday       = entity.Birthday,
-            ProfilePicture = entity.ProfilePicture,
+            ProfilePicture = image
         };
     }
 }
