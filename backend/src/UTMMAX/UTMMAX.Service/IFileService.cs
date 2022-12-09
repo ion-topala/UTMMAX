@@ -2,6 +2,7 @@ namespace UTMMAX.Service
 {
     public interface IFileService
     {
-        string GetAvatarIcon();
+        string GenerateProfileIcon();
+        byte[] GetImage(string path);
     }
 }

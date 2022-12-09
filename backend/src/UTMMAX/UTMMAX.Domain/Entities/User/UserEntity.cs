@@ -8,7 +8,7 @@ public class UserEntity : BaseEntity
     public string   PasswordHash   { get; set; }
     public DateTime Birthday       { get; set; }
     public Gender   Gender         { get; set; }
-    public string   ProfilePicture { get; set; }
+    public string?  ProfilePicture { get; set; }
 
     public string FullName =>
         string.Join(" ", new[] {FirstName, LastName}.Where(it => !string.IsNullOrWhiteSpace(it)));

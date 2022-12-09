@@ -5,17 +5,19 @@ namespace UTMMAX.Files
 {
     public class FileService : IFileService
     {
-        public string GetAvatarIcon()
+        public byte[] GetImage(string path)
+        {
+            return File.ReadAllBytes(path);
+        }
+
+        public string GenerateProfileIcon()
         {
             var rand                  = new Random();
-            var path                  = ProfileImageDirectoryPath();
-            var allFilesFromDirectory = Directory.GetFiles(path, "*.png");
+            var imageDirectoryPath    = ProfileImageDirectoryPath();
+            var allFilesFromDirectory = Directory.GetFiles(imageDirectoryPath, "*.png");
             var randomChosenImage     = allFilesFromDirectory[rand.Next(allFilesFromDirectory.Length)];
 
-            var imageArray                = File.ReadAllBytes(randomChosenImage);
-            var base64ImageRepresentation = Convert.ToBase64String(imageArray);
-
-            return base64ImageRepresentation;
+            return randomChosenImage;
         }
 
         private static string ProfileImageDirectoryPath()

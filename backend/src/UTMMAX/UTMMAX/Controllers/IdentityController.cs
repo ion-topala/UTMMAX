@@ -45,4 +45,24 @@ public class IdentityController : ApiBaseController
             return BadRequest(ApiErrorCodes.IdentityNotFound, ApiErrorMessage.AccountNotExists);
         }
     }
+
+    [ApiAction("profile-picture")]
+    [HttpGet("picture/{id:int}")]
+    public async Task<IActionResult> GetProfilePicture(int id)
+    {
+        try
+        {
+            var image = await _identityManager.GetProfileImage(id);
+            if (image.Any())
+            {
+                return File(image, "image/png");
+            }
+
+            return NoContent();
+        }
+        catch (UserNotFoundException)
+        {
+            return BadRequest(ApiErrorCodes.IdentityNotFound, ApiErrorMessage.AccountNotExists);
+        }
+    }
 }

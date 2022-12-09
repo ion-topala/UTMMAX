@@ -59,7 +59,7 @@ public class AuthenticationManager
             userEntity.ThrowIfNotNull(() => new UserAlreadyExistsException());
 
             userEntity                = _userMapper.ToEntity(model);
-            userEntity.ProfilePicture = _fileService.GetAvatarIcon();
+            userEntity.ProfilePicture = _fileService.GenerateProfileIcon();
             userEntity.PasswordHash   = _passwordService.HashPassword(model.Password);
             await _userService.Insert(userEntity);
 
