@@ -7,6 +7,11 @@ export const routes: Routes = [
     component: MainContainerComponent,
     children: [
       {
+        path: 'movie',
+        loadChildren: () => import('src/app/movie/movie.module')
+          .then(m => m.MovieModule),
+      },
+      {
         path: 'auth',
         loadChildren: () => import('src/app/auth/auth.module')
           .then(m => m.AuthModule),
