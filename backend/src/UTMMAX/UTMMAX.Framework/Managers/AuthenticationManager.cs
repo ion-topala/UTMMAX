@@ -24,6 +24,7 @@ public class AuthenticationManager
     private readonly ITokenGenerator                _tokenGenerator;
     private readonly ITokenBuilderService           _tokenBuilderService;
     private readonly IRefreshTokenService           _refreshTokenService;
+    private readonly IFileService                   _fileService;
 
     public AuthenticationManager(
         IServiceModelValidator         validator,
@@ -33,7 +34,8 @@ public class AuthenticationManager
         IPasswordService               passwordService,
         ITokenGenerator                tokenGenerator,
         ITokenBuilderService           tokenBuilderService,
-        IRefreshTokenService           refreshTokenService)
+        IRefreshTokenService           refreshTokenService,
+        IFileService                   fileService)
     {
         _validator           = validator;
         _userService         = userService;
@@ -43,6 +45,7 @@ public class AuthenticationManager
         _tokenGenerator      = tokenGenerator;
         _tokenBuilderService = tokenBuilderService;
         _refreshTokenService = refreshTokenService;
+        _fileService         = fileService;
     }
 
     public async Task<UserModel> RegisterUser(RegisterUserModel model)
@@ -55,8 +58,9 @@ public class AuthenticationManager
             var userEntity = await _userService.GetUserByEmail(model.Email);
             userEntity.ThrowIfNotNull(() => new UserAlreadyExistsException());
 
-            userEntity              = _userMapper.ToEntity(model);
-            userEntity.PasswordHash = _passwordService.HashPassword(model.Password);
+            userEntity                = _userMapper.ToEntity(model);
+            userEntity.ProfilePicture = _fileService.GenerateProfileIcon();
+            userEntity.PasswordHash   = _passwordService.HashPassword(model.Password);
             await _userService.Insert(userEntity);
 
             return _userMapper.ToModel(userEntity);

@@ -4,7 +4,7 @@ public static class ApiErrorMessage
 {
     public const string AccessDenied                      = "Not enough permisions to perform this action, please contact your administrator";
     public const string InvalidData                       = "Please insert valid data";
-    public const string EmailOrPasswordInvalid            = "Your email or password is invalid";
+    public const string EmailOrPasswordInvalid            = "Your email or password are incorrect";
     public const string UserAlreadyExists                 = "This user already exists";
     public const string FirstNameOrLastNameOrPhoneInvalid = "Your first name, time zone, last name or phone is invalid";
     public const string AccountNotExists                  = "This account does not exist. Enter a different account or create one, if you don't have it";

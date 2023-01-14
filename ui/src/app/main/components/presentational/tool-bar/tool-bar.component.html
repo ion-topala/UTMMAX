@@ -8,31 +8,32 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div style="height: 100vh;">
-    <mat-toolbar color="primary">
-      <button mat-icon-button
-              aria-label="Menu"
-              (click)="sidenav.open()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span class="toolbar-title">
+      <mat-toolbar color="primary">
+        <button mat-icon-button
+                aria-label="Menu"
+                (click)="sidenav.open()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="toolbar-title">
           <a routerLink="/dashboard">
             <img src="assets/images/utm-logo-white.svg" width="100" height="100" alt="">
           </a>
         </span>
-      <span class="example-spacer"></span>
-      <div *ngIf="!user">
-        <button mat-flat-button color="accent" routerLink="/auth/register">
-          Sign Up
-        </button>
-        <button mat-button routerLink="/auth/login">
-          Sign In
-        </button>
-      </div>
-      <a mat-stroked-button [mat-menu-trigger-for]="accountMenu" *ngIf="user">
-        <img src="assets/images/user.png" width="35" height="35" alt="">
-      </a>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
+        <span class="example-spacer"></span>
+        <div *ngIf="!user">
+          <button mat-flat-button color="accent" routerLink="/auth/register">
+            Sign Up
+          </button>
+          <button mat-button routerLink="/auth/login">
+            Sign In
+          </button>
+        </div>
+        <a mat-stroked-button [mat-menu-trigger-for]="accountMenu" *ngIf="user">
+          <img [src]="user.profilePicture ? user.profilePicture : 'assets/images/account.png'" width="35" height="35"
+               alt="Profile picture">
+        </a>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
