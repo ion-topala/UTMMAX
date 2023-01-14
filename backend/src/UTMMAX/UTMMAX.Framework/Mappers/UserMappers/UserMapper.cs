@@ -31,7 +31,7 @@ public class UserMapper : IUserMapper
         
         if (entity.ProfilePicture != null)
         {
-            image = "data:image/jpg;base64," + _fileService.GetImage(entity.ProfilePicture);
+            image = _fileService.GetImage(entity.ProfilePicture);
         }
 
         return new UserModel
