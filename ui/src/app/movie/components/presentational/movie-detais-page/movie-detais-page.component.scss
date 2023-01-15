@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main-container {
+  margin: 20px 50px 0 50px;
+  display: flex;
+  background-color: #E0E0E0	;
+}
+
+.poster-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 33%;
+}
+
+.description-container {
+  width: 66%;
+  height: 10vw;
+}
+
+.image-class {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  min-width: 100%;
+  min-height: 320px;
+  white-space: nowrap;
+  text-indent: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.poster-container div {
+  width: 302px;
+  height: 453px;
+}
+
+.title-container {
+  height: 120px;
+  display:flex;
+  align-items:center;
+  font-size:5em;
+}
