@@ -30,6 +30,7 @@
       <ProjectReference Include="..\UTMMAX.Mvc.Extensions\UTMMAX.Mvc.Extensions.csproj" />
       <ProjectReference Include="..\UTMMAX.Repository\UTMMAX.Repository.csproj" />
       <ProjectReference Include="..\UTMMAX.Service\UTMMAX.Service.csproj" />
+      <ProjectReference Include="..\UTMMAX.Youtube\UTMMAX.Youtube.csproj" />
     </ItemGroup>
 
 </Project>

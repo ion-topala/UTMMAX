@@ -17,6 +17,7 @@ using UTMMAX.Mvc.Extensions;
 using UTMMAX.Repository;
 using UTMMAX.Service;
 using UTMMAX.Services;
+using UTMMAX.Youtube;
 
 namespace UTMMAX;
 
@@ -42,6 +43,7 @@ public class Startup
         services.AddFileService();
 
         services.AddKinopoiskService(Configuration.GetSection("Kinopoisk").Get<KinopoiskConfig>());
+        services.AddYoutubeServices(Configuration.GetSection("Youtube").Get<YoutubeConfig>());
         
         RegisterConfigurations(services);
         AddInfrastructure(services);
