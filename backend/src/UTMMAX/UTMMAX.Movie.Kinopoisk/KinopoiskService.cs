@@ -37,12 +37,11 @@ public class KinopoiskService : IKinopoiskService
 
     public async Task<MovieDetailsModel> GetById(double id)
     {
-        var a = id.ToString(CultureInfo.CurrentCulture);
         using var content = new FormUrlEncodedContent(new KeyValuePair<string, string>[]
         {
             new("token", _kinopoiskConfig.ApiToken),
             new("field", "id"),
-            new("search", a),
+            new("search", id.ToString(CultureInfo.CurrentCulture)),
         });
         
         var query         = content.ReadAsStringAsync().Result;
