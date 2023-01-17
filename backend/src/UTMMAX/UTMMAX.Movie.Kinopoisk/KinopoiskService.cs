@@ -1,5 +1,6 @@
-﻿using Newtonsoft.Json;
-using UTMMAX.Kinopoisk.Models;
+﻿using System.Globalization;
+using Newtonsoft.Json;
+using UTMMAX.Movie.Models;
 
 namespace UTMMAX.Kinopoisk;
 
@@ -26,10 +27,30 @@ public class KinopoiskService : IKinopoiskService
         });
         var query = content.ReadAsStringAsync().Result;
 
-        var result = await CallApi(query);
+        var responseBody = await CallApi(query);
+
+        var result = JsonConvert.DeserializeObject<QueryResponseModel>(responseBody);
         result.Docs = result.Docs.Where(model => model.Rating.Imdb > 0.0).ToArray();
 
         return result;
+    }
+
+    public async Task<MovieDetailsModel> GetById(double id)
+    {
+        var a = id.ToString(CultureInfo.CurrentCulture);
+        using var content = new FormUrlEncodedContent(new KeyValuePair<string, string>[]
+        {
+            new("token", _kinopoiskConfig.ApiToken),
+            new("field", "id"),
+            new("search", a),
+        });
+        
+        var query         = content.ReadAsStringAsync().Result;
+        var result        = await CallApi(query);
+        
+        var responseModel = JsonConvert.DeserializeObject<MovieDetailsModel>(result);
+
+        return responseModel;
     }
 
     public async Task<QueryResponseModel> GetTopByType(FilterModel filter)
@@ -52,18 +73,19 @@ public class KinopoiskService : IKinopoiskService
         var query  = content.ReadAsStringAsync().Result;
         var result = await CallApi(query);
 
-        return result;
+        var responseModel = JsonConvert.DeserializeObject<QueryResponseModel>(result);
+
+        return responseModel;
     }
 
-    private async Task<QueryResponseModel> CallApi(string query)
+    private async Task<string> CallApi(string query)
     {
         var response = await _httpClient
             .GetAsync($"{_kinopoiskConfig.ApiUrl}{ApiUrlConstants.MovieUrl}?{query}");
         response.EnsureSuccessStatusCode();
 
         var responseBody = await response.Content.ReadAsStringAsync();
-        var result       = JsonConvert.DeserializeObject<QueryResponseModel>(responseBody);
 
-        return result;
+        return responseBody;
     }
 }

@@ -1,6 +1,6 @@
-﻿using UTMMAX.Kinopoisk.Enums;
+using UTMMAX.Kinopoisk.Enums;
 
-namespace UTMMAX.Kinopoisk.Models;
+namespace UTMMAX.Movie.Models;
 
 public class FilterModel
 {

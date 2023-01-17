@@ -36,4 +36,15 @@ public class MovieController : ApiBaseController
 
         return Ok(movies);
     }
+    
+        
+    [AllowAnonymous]
+    [HttpGet("{id:long}")]
+    [ApiAction("get_by_id")]
+    public async Task<IActionResult> GetById(long id)
+    {
+        var movies = await _movieManager.GetById(id);
+
+        return Ok(movies);
+    }
 }
