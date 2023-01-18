@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+.main-container {
+  margin: 20px 50px 0 50px;
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.poster-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 33%;
+}
+
+.description-container {
+  width: 66%;
+  height: 10vw;
+}
+
+.image-class {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  min-width: 100%;
+  min-height: 320px;
+  white-space: nowrap;
+  text-indent: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.poster-container div {
+  width: 302px;
+  height: 453px;
+}
+
+.title-container {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  font-size: 5em;
+}
+
+.movie-description {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-details {
+  display: flex;
+  align-items: baseline;
+  padding: 8px 0;
+}
+
+.details-name {
+  width: 160px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.details-info {
+  flex: 1;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.main-rating-container {
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.rating-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.rating-container2 {
+  display: flex;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-right: -10px;
+  margin-left: -10px;
+}
+

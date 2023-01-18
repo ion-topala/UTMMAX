@@ -1,5 +1,5 @@
 ﻿using UTMMAX.Framework.Models.Movie;
-using UTMMAX.Kinopoisk.Models;
+using UTMMAX.Movie.Models;
 
 namespace UTMMAX.Framework.Mappers.MovieMappers;
 

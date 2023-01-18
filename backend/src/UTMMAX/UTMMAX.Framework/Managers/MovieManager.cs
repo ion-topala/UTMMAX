@@ -1,7 +1,9 @@
 ﻿using UTMMAX.Framework.Mappers.MovieMappers;
 using UTMMAX.Framework.Models.Movie;
 using UTMMAX.Kinopoisk;
-using UTMMAX.Kinopoisk.Models;
+using UTMMAX.Movie.Models;
+using FilterModel = UTMMAX.Movie.Models.FilterModel;
+using MovieModel = UTMMAX.Movie.Models.MovieModel;
 
 namespace UTMMAX.Framework.Managers;
 
@@ -26,8 +28,8 @@ public class MovieManager
 
         var responseModel = await _kinopoiskService.SearchAsync(filter);
         responseModel.Docs = responseModel.Docs.OrderByDescending(movieModel => movieModel.Rating.Imdb)
-                                          .Take(filter.Limit)
-                                          .ToArray();
+            .Take(filter.Limit)
+            .ToArray();
 
         return responseModel.Docs;
     }
@@ -42,5 +44,10 @@ public class MovieManager
         var responseModel = await _kinopoiskService.GetTopByType(filter);
 
         return responseModel.Docs.Select(_movieMapper.Map).ToArray();
+    }
+
+    public async Task<MovieDetailsModel> GetById(long id)
+    {
+        return await _kinopoiskService.GetById(id);
     }
 }

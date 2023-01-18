@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {ApiService} from "./api.service";
-import {MovieFilterModel, MovieResultModel} from "../models/movie-models";
+import {MovieDetailsModel, MovieFilterModel, MovieResultModel} from "../models/movie-models";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -12,7 +12,11 @@ export class MoviesApiService {
   constructor(private apiService: ApiService) {
   }
 
-  public getTopMovies(movieFilter: MovieFilterModel): Observable<MovieResultModel[]>{
+  public getTopMovies(movieFilter: MovieFilterModel): Observable<MovieResultModel[]> {
     return this.apiService.get(this.apiUrl, movieFilter);
+  }
+
+  public getById(movieId: number): Observable<MovieDetailsModel> {
+    return this.apiService.get(`${this.apiUrl}/${movieId}`);
   }
 }

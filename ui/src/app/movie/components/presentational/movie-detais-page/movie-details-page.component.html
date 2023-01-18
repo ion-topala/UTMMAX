@@ -1,0 +1,100 @@
+<div class="main-container">
+  <div class="poster-container">
+    <div>
+      <img class="image-class" src="{{data?.poster?.url}}">
+    </div>
+  </div>
+  <div class="description-container">
+    <div class="title-container">
+      <span>{{data?.name}}</span>
+    </div>
+    <div class="movie-description">
+      <div class="movie-details">
+        <div class="details-name">Год производства</div>
+        <div class="details-info">
+          <span>{{data?.year}}</span>
+        </div>
+      </div>
+
+      <div class="movie-details">
+        <div class="details-name">Время</div>
+        <div class="details-info">
+          <span>{{data?.movieLength}}</span>
+        </div>
+      </div>
+
+      <div class="movie-details">
+        <div class="details-name">Страна</div>
+        <div class="details-info">
+          <span>{{data?.premiere?.country}}</span>
+        </div>
+      </div>
+      <div class="movie-details">
+        <div class="details-name">Жанр</div>
+        <div class="details-info">
+          <span>{{getGenres()}}</span>
+        </div>
+      </div>
+
+      <div class="movie-details">
+        <div class="details-name">Слоган</div>
+        <div class="details-info">
+          <span><i>{{data?.slogan}}</i></span>
+        </div>
+      </div>
+
+      <div class="movie-details">
+        <div class="details-name">Режиссер</div>
+        <div class="details-info">
+          <span>{{getMovieDirectors()}}</span>
+        </div>
+      </div>
+
+      <div class="movie-details">
+        <div class="details-name">В главных ролях</div>
+        <div class="details-info">
+          <span>{{getActors()}}</span>
+        </div>
+      </div>
+
+      <div class="movie-details">
+        <div class="details-name">Бюджет</div>
+        <div class="details-info">
+          <span>{{getBudged()}}</span>
+        </div>
+      </div>
+
+      <div class="movie-details">
+        <div class="details-name">
+          <b>Рейтинг</b>
+        </div>
+        <div class="details-info">
+          <b>{{data?.rating.imdb}}</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="main-rating-container">
+  <div class="rating-container">
+    <div class="rating-container2">
+      <div style="display: flex; align-items: center;">
+        <div>
+          <span>Описание</span>
+          <br>
+          <br>
+          <div>
+            <span>{{data?.description}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="data">
+        <iframe width="420" height="315" frameborder="0" allowfullscreen [src]="getTrailer() | safe" scrolling="no"></iframe>
+      </div>
+    </div>
+  </div>
+</div>

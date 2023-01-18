@@ -1,4 +1,4 @@
-﻿namespace UTMMAX.Kinopoisk.Models;
+﻿namespace UTMMAX.Movie.Models;
 
 public class Poster : BaseMovieModel
 {
