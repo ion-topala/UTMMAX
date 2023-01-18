@@ -1,4 +1,13 @@
-import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges
+} from "@angular/core";
 import {UserModel} from "../../../../models/user.models";
 import {StorageService} from "../../../../shared/storage.service";
 import {filter, Observable, pluck} from "rxjs";
@@ -17,6 +26,12 @@ export class ToolBarComponent implements OnChanges {
 
   constructor(private cdRef: ChangeDetectorRef) {
   }
+
+  @Input()
+  public searchTerm: string;
+
+  @Output()
+  public onSearchBarClick = new EventEmitter();
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['user']?.currentValue) {

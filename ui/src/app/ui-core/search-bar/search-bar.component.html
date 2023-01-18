@@ -1,0 +1,7 @@
+<div class="search-bar-component search-bar-component--{{theme}}" (click)="onClick.emit()">
+  <input type="text" class="w-full px-2" [placeholder]="placeholder" (keyup)="updateValue($event)"
+         #inputElement
+         [disabled]="disabled"
+  />
+</div>
+<div class="search-bar-component-hint material-font" *ngIf="hint">{{hint}}</div>

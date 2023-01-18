@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UserModel} from "../../../../models/user.models";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-main-page',
@@ -10,6 +11,9 @@ export class MainPageComponent implements OnInit {
 
   @Input()
   public user: UserModel | null;
+
+  @Output()
+  public onSearchBarClick = new EventEmitter();
 
   constructor() {
   }

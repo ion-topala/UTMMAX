@@ -1,0 +1,6 @@
+$form-field-height: 36px;
+
+@mixin form-field-container {
+    height:     $form-field-height;
+    box-sizing: border-box;
+}

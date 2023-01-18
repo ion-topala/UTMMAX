@@ -14,6 +14,19 @@
                 (click)="sidenav.open()">
           <mat-icon>menu</mat-icon>
         </button>
+        <div>
+          <ng-container>
+            <search-bar [disabled]="false" [value]="searchTerm" (onClick)="onSearchBarClick.emit()"
+                        placeholder="Search">
+
+            </search-bar>
+          </ng-container>
+<!--          <ng-container *ifScreenSize="['small']">-->
+<!--            <button class="search-button" mat-icon-button (click)="onSearchBarClick.emit()">-->
+<!--              <mat-icon>search</mat-icon>-->
+<!--            </button>-->
+<!--          </ng-container>-->
+        </div>
         <span class="toolbar-title">
           <a routerLink="/dashboard">
             <img src="assets/images/utm-logo-white.svg" width="100" height="100" alt="">

@@ -14,6 +14,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSelectModule} from "@angular/material/select";
 import {MatListModule} from "@angular/material/list";
 import {ToolBarComponent} from "./components/presentational/tool-bar/tool-bar.component";
+import {UiCoreModule} from "../ui-core/ui-core.module";
 
 
 @NgModule({
@@ -22,19 +23,20 @@ import {ToolBarComponent} from "./components/presentational/tool-bar/tool-bar.co
     MainPageComponent,
     ToolBarComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatDividerModule,
-    MatFormFieldModule,
-    MatSidenavModule,
-    MatSelectModule,
-    MatListModule,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatDividerModule,
+        MatFormFieldModule,
+        MatSidenavModule,
+        MatSelectModule,
+        MatListModule,
+        UiCoreModule,
+    ]
 })
 export class MainModule {
 }
